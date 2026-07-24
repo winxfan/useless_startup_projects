@@ -10,7 +10,7 @@
 <helmet>
 <style>
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
-body{margin:0;background:#000;}
+html,body{margin:0;background:#000;height:100%;}
 input,button,textarea{font-family:inherit;}
 @keyframes spin{to{transform:rotate(360deg);}}
 @keyframes blinkA{0%,100%{opacity:.12;}50%{opacity:1;}}
@@ -20,9 +20,53 @@ input,button,textarea{font-family:inherit;}
 @keyframes slideL{from{transform:translateX(-100%);}to{transform:translateX(0);}}
 @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
 a,a:hover{color:#0A84FF;}
+.phone-shell{
+  width:390px;height:844px;margin:0 auto;position:relative;overflow:hidden;
+  background:#000;color:#fff;
+  font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','Helvetica Neue',sans-serif;
+}
+.calc-wrap{
+  position:absolute;inset:0;background:#000;display:flex;flex-direction:column;
+  justify-content:flex-end;padding:0 12px max(30px,env(safe-area-inset-bottom));
+}
+.calc-display{
+  text-align:right;padding:0 16px 10px;font-size:clamp(42px,11vw,82px);
+  font-weight:200;line-height:1;overflow:hidden;white-space:nowrap;min-height:1.1em;
+}
+.calc-grid{
+  display:grid;grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:clamp(8px,2.2vw,12px);
+}
+.calc-btn{
+  height:clamp(56px,min(18vw,12.5vh),78px);border:none;border-radius:999px;
+  font-size:clamp(22px,5.5vw,34px);font-weight:500;cursor:pointer;
+  -webkit-user-select:none;user-select:none;
+}
+.calc-btn--fn{background:#A5A5A5;color:#000;font-size:clamp(20px,5vw,30px);}
+.calc-btn--op{background:#FF9F0A;color:#fff;font-size:clamp(28px,6.5vw,40px);font-weight:400;}
+.calc-btn--num{background:#333;color:#fff;}
+.calc-btn--zero{grid-column:span 2;text-align:left;padding-left:clamp(22px,8vw,31px);}
+@media (max-width:430px){
+  .phone-shell{width:100%;height:100dvh;height:100vh;max-width:100%;}
+  .calc-wrap{padding:0 max(10px,env(safe-area-inset-left)) max(24px,env(safe-area-inset-bottom)) max(10px,env(safe-area-inset-right));}
+  .calc-display{padding:0 12px 8px;font-size:clamp(40px,14vw,72px);}
+  .calc-grid{gap:clamp(7px,2vw,10px);}
+  .calc-btn{height:clamp(54px,min(21vw,11.5vh),72px);}
+}
+@media (max-width:360px){
+  .calc-display{font-size:clamp(34px,12vw,56px);}
+  .calc-btn{height:clamp(48px,min(20vw,11vh),64px);font-size:clamp(18px,5vw,28px);}
+  .calc-btn--fn{font-size:clamp(16px,4.5vw,24px);}
+  .calc-btn--op{font-size:clamp(22px,5.5vw,32px);}
+  .calc-btn--zero{padding-left:clamp(18px,6vw,26px);}
+}
+@media (max-height:700px) and (max-width:430px){
+  .calc-display{font-size:clamp(32px,9vh,56px);padding-bottom:6px;}
+  .calc-btn{height:clamp(44px,9.5vh,62px);}
+}
 </style>
 </helmet>
-<div style="width:390px;height:844px;margin:0 auto;position:relative;overflow:hidden;background:#000;color:#fff;font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','Helvetica Neue',sans-serif;">
+<div class="phone-shell">
 
   <div style="position:absolute;top:0;left:0;right:0;height:54px;display:flex;align-items:center;justify-content:space-between;padding:16px 30px 0;z-index:55;pointer-events:none;font-weight:600;font-size:15px;">
     <span style="{{ statusStyle }}">9:41</span>
@@ -54,28 +98,28 @@ a,a:hover{color:#0A84FF;}
   </sc-if>
 
   <sc-if value="{{ isCalculator }}" hint-placeholder-val="{{ true }}">
-  <div style="position:absolute;inset:0;background:#000;display:flex;flex-direction:column;justify-content:flex-end;padding:0 12px 30px;">
-    <div style="text-align:right;padding:0 16px 10px;font-size:82px;font-weight:200;line-height:1;overflow:hidden;white-space:nowrap;">{{ calcDisplay }}</div>
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;">
-      <button onClick="{{ press.clear }}" style="height:78px;border:none;border-radius:40px;background:#A5A5A5;color:#000;font-size:30px;font-weight:500;">AC</button>
-      <button onClick="{{ press.sign }}" style="height:78px;border:none;border-radius:40px;background:#A5A5A5;color:#000;font-size:28px;font-weight:500;">+/−</button>
-      <button onClick="{{ press.percent }}" style="height:78px;border:none;border-radius:40px;background:#A5A5A5;color:#000;font-size:30px;font-weight:500;">%</button>
-      <button onClick="{{ press.div }}" style="height:78px;border:none;border-radius:40px;background:#FF9F0A;color:#fff;font-size:40px;">÷</button>
-      <button onClick="{{ press.d7 }}" style="height:78px;border:none;border-radius:40px;background:#333;color:#fff;font-size:34px;">7</button>
-      <button onClick="{{ press.d8 }}" style="height:78px;border:none;border-radius:40px;background:#333;color:#fff;font-size:34px;">8</button>
-      <button onClick="{{ press.d9 }}" style="height:78px;border:none;border-radius:40px;background:#333;color:#fff;font-size:34px;">9</button>
-      <button onClick="{{ press.mul }}" style="height:78px;border:none;border-radius:40px;background:#FF9F0A;color:#fff;font-size:40px;">×</button>
-      <button onClick="{{ press.d4 }}" style="height:78px;border:none;border-radius:40px;background:#333;color:#fff;font-size:34px;">4</button>
-      <button onClick="{{ press.d5 }}" style="height:78px;border:none;border-radius:40px;background:#333;color:#fff;font-size:34px;">5</button>
-      <button onClick="{{ press.d6 }}" style="height:78px;border:none;border-radius:40px;background:#333;color:#fff;font-size:34px;">6</button>
-      <button onClick="{{ press.sub }}" style="height:78px;border:none;border-radius:40px;background:#FF9F0A;color:#fff;font-size:40px;">−</button>
-      <button onClick="{{ press.d1 }}" style="height:78px;border:none;border-radius:40px;background:#333;color:#fff;font-size:34px;">1</button>
-      <button onClick="{{ press.d2 }}" style="height:78px;border:none;border-radius:40px;background:#333;color:#fff;font-size:34px;">2</button>
-      <button onClick="{{ press.d3 }}" style="height:78px;border:none;border-radius:40px;background:#333;color:#fff;font-size:34px;">3</button>
-      <button onClick="{{ press.add }}" style="height:78px;border:none;border-radius:40px;background:#FF9F0A;color:#fff;font-size:40px;">+</button>
-      <button onClick="{{ press.d0 }}" style="height:78px;border:none;border-radius:40px;background:#333;color:#fff;font-size:34px;grid-column:span 2;text-align:left;padding-left:31px;">0</button>
-      <button onClick="{{ press.dot }}" style="height:78px;border:none;border-radius:40px;background:#333;color:#fff;font-size:34px;">,</button>
-      <button onClick="{{ press.eq }}" style="height:78px;border:none;border-radius:40px;background:#FF9F0A;color:#fff;font-size:40px;">=</button>
+  <div class="calc-wrap">
+    <div class="calc-display">{{ calcDisplay }}</div>
+    <div class="calc-grid">
+      <button onClick="{{ press.clear }}" class="calc-btn calc-btn--fn">AC</button>
+      <button onClick="{{ press.sign }}" class="calc-btn calc-btn--fn">+/−</button>
+      <button onClick="{{ press.percent }}" class="calc-btn calc-btn--fn">%</button>
+      <button onClick="{{ press.div }}" class="calc-btn calc-btn--op">÷</button>
+      <button onClick="{{ press.d7 }}" class="calc-btn calc-btn--num">7</button>
+      <button onClick="{{ press.d8 }}" class="calc-btn calc-btn--num">8</button>
+      <button onClick="{{ press.d9 }}" class="calc-btn calc-btn--num">9</button>
+      <button onClick="{{ press.mul }}" class="calc-btn calc-btn--op">×</button>
+      <button onClick="{{ press.d4 }}" class="calc-btn calc-btn--num">4</button>
+      <button onClick="{{ press.d5 }}" class="calc-btn calc-btn--num">5</button>
+      <button onClick="{{ press.d6 }}" class="calc-btn calc-btn--num">6</button>
+      <button onClick="{{ press.sub }}" class="calc-btn calc-btn--op">−</button>
+      <button onClick="{{ press.d1 }}" class="calc-btn calc-btn--num">1</button>
+      <button onClick="{{ press.d2 }}" class="calc-btn calc-btn--num">2</button>
+      <button onClick="{{ press.d3 }}" class="calc-btn calc-btn--num">3</button>
+      <button onClick="{{ press.add }}" class="calc-btn calc-btn--op">+</button>
+      <button onClick="{{ press.d0 }}" class="calc-btn calc-btn--num calc-btn--zero">0</button>
+      <button onClick="{{ press.dot }}" class="calc-btn calc-btn--num">,</button>
+      <button onClick="{{ press.eq }}" class="calc-btn calc-btn--op">=</button>
     </div>
   </div>
   </sc-if>
