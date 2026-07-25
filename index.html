@@ -237,11 +237,14 @@ a,a:hover{color:#0A84FF;}
 
   <sc-if value="{{ isMirror }}">
   <div style="position:absolute;inset:0;background:#000;overflow:hidden;">
-    <video autoplay="true" playsinline="true" muted="true" ref="{{ videoRef }}" style="{{ mirrorVideoStyle }}"></video>
-    <sc-if value="{{ camErr }}"><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#8E8E93;font-size:15px;text-align:center;padding:0 44px;line-height:1.5;">Нет доступа к камере. Разрешите доступ, чтобы включить зеркало.</div></sc-if>
+    <video autoplay="true" playsinline="true" webkit-playsinline="true" muted="true" ref="{{ videoRef }}" style="{{ mirrorVideoStyle }}"></video>
+    <sc-if value="{{ camLoading }}">
+      <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#8E8E93;font-size:15px;">Включение камеры…</div>
+    </sc-if>
+    <sc-if value="{{ camErr }}"><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#8E8E93;font-size:15px;text-align:center;padding:0 44px;line-height:1.5;">Нет доступа к камере. Разрешите доступ к фронтальной камере, чтобы включить зеркало.</div></sc-if>
     <sc-if value="{{ mirrorWatermark }}">
       <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;">
-        <div style="font-size:38px;font-weight:800;letter-spacing:2px;color:rgba(255,255,255,0.42);transform:rotate(-15deg);text-shadow:0 2px 10px rgba(0,0,0,.45);">MIRROR FREE</div>
+        <div style="font-size:38px;font-weight:800;letter-spacing:2px;color:#FF3B30;transform:rotate(-15deg);text-shadow:0 2px 10px rgba(0,0,0,.55);opacity:.88;">MIRROR FREE</div>
       </div>
     </sc-if>
     <sc-if value="{{ mirrorTired }}">
@@ -425,7 +428,7 @@ class Component extends DCLogic {
     swMs:0, swRunning:false, stopwatchPaidAt:null,
     saturdayUnlocked:false,
     adBlocked:false, contactsExpanded:false,
-    watermarkRemoved:false, camErr:false,
+    watermarkRemoved:false, camErr:false, camReady:false,
     trInput:'Я хочу заказать столик на двоих', trWords:[], translatorUnlocked:[],
     compassStarted:false, heading:0,
     pay:null
@@ -455,6 +458,7 @@ class Component extends DCLogic {
     this.clearPayTimers();
     if(this.swTimer) clearInterval(this.swTimer);
     if(this.alarmPriceTimer) clearInterval(this.alarmPriceTimer);
+    if(this.camAttachTimer) clearTimeout(this.camAttachTimer);
     this.stopAlarm(); this.stopCamera(); this.stopOrientation();
   }
 
@@ -475,7 +479,7 @@ class Component extends DCLogic {
       swMs:0, swRunning:false, stopwatchPaidAt:null,
       saturdayUnlocked:false,
       adBlocked:false, contactsExpanded:false,
-      watermarkRemoved:false,
+      watermarkRemoved:false, camErr:false, camReady:false,
       trWords:[], translatorUnlocked:[],
       compassStarted:false, heading:0,
       pay:null, menuOpen:false
@@ -558,11 +562,46 @@ class Component extends DCLogic {
   stopAlarm(){ if(this.alarmBeep){clearInterval(this.alarmBeep);this.alarmBeep=null;} }
 
   startCamera(){
-    this.setState({camErr:false});
+    this.camAttachTries=0;
+    this.setState({camErr:false,camReady:false});
     if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia){ this.setState({camErr:true}); return; }
-    navigator.mediaDevices.getUserMedia({video:{facingMode:'user'},audio:false}).then(s=>{ this.stream=s; if(this.videoRef.current){ this.videoRef.current.srcObject=s; } }).catch(()=>{ this.setState({camErr:true}); });
+    const attach=(s)=>{ this.stream=s; this.attachCamera(); };
+    const fail=()=>this.setState({camErr:true,camReady:false});
+    navigator.mediaDevices.getUserMedia({
+      video:{facingMode:{ideal:'user'},width:{ideal:1280},height:{ideal:720}},
+      audio:false
+    }).then(attach).catch(()=>{
+      navigator.mediaDevices.getUserMedia({video:{facingMode:'user'},audio:false})
+        .then(attach)
+        .catch(()=>navigator.mediaDevices.getUserMedia({video:true,audio:false}).then(attach).catch(fail));
+    });
   }
-  stopCamera(){ if(this.stream){ this.stream.getTracks().forEach(t=>t.stop()); this.stream=null; } }
+  attachCamera(){
+    if(this.state.app!=='mirror') return;
+    const v=this.videoRef&&this.videoRef.current;
+    if(!v){
+      if(this.camAttachTries++<30){ this.camAttachTimer=setTimeout(()=>this.attachCamera(),50); }
+      else this.setState({camErr:true,camReady:false});
+      return;
+    }
+    this.camAttachTries=0;
+    try{
+      v.srcObject=this.stream;
+      v.muted=true;
+      v.setAttribute('playsinline','');
+      v.setAttribute('webkit-playsinline','');
+      const play=v.play();
+      if(play&&play.then) play.then(()=>this.setState({camReady:true,camErr:false})).catch(()=>this.setState({camReady:true}));
+      else this.setState({camReady:true});
+    }catch(e){ this.setState({camErr:true,camReady:false}); }
+  }
+  stopCamera(){
+    if(this.camAttachTimer){ clearTimeout(this.camAttachTimer); this.camAttachTimer=null; }
+    if(this.stream){ this.stream.getTracks().forEach(t=>t.stop()); this.stream=null; }
+    const v=this.videoRef&&this.videoRef.current;
+    if(v){ try{ v.srcObject=null; }catch(e){} }
+    this.setState({camReady:false});
+  }
 
   startOrientation(){
     const h=(e)=>{ let hd = e.webkitCompassHeading!=null ? e.webkitCompassHeading : (e.alpha!=null ? 360-e.alpha : 0); this.setState({heading:hd}); };
@@ -682,9 +721,9 @@ class Component extends DCLogic {
       toggleContactsBanner:()=>this.setState(s=>({contactsExpanded:!s.contactsExpanded})),
       contactsDisableAd:()=>this.open('contacts'), contactsList,
 
-      videoRef:this.videoRef, camErr:st.camErr,
+      videoRef:this.videoRef, camErr:st.camErr, camLoading:!st.camErr&&!st.camReady&&app==='mirror',
       mirrorWatermark:!st.watermarkRemoved, mirrorTired:st.watermarkRemoved,
-      mirrorVideoStyle:{width:'100%',height:'100%',objectFit:'cover',transform:'scaleX(-1)',filter:st.watermarkRemoved?'sepia(0.45) saturate(1.5) contrast(1.03) brightness(1.05)':'none'},
+      mirrorVideoStyle:{position:'absolute',inset:0,width:'100%',height:'100%',objectFit:'cover',transform:'scaleX(-1)',background:'#000',opacity:st.camReady?1:0,transition:'opacity .25s ease',filter:st.watermarkRemoved?'sepia(0.45) saturate(1.5) contrast(1.03) brightness(1.05)':'none'},
       mirrorRemove:()=>this.open('mirror'),
 
       trInput:st.trInput, setTrInput:(e)=>this.setState({trInput:e.target.value}), translate:()=>this.translate(), trTokens,
