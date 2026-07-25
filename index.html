@@ -1653,7 +1653,8 @@ class Component extends DCLogic {
   pedoStep(){ const cap=this.pedoCap(); this.setState(s=>({pedoSteps:Math.min(cap,s.pedoSteps+1)})); }
 
   /* --- cooktimer --- */
-  cookFreezeAt(){ return Math.max(0,this.state.cookTotal-60); }
+  // 10:00 freezes at exactly 09:00; shorter presets keep a proportional last stretch
+  cookFreezeAt(){ const t=this.state.cookTotal; return t>60?t-60:Math.ceil(t*0.1); }
   syncCook(){
     const st=this.state;
     const blocked=!!st.pay||!!st.casino;
