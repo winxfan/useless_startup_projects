@@ -70,6 +70,78 @@ a,a:hover{color:#0A84FF;}
   .calc-display{font-size:clamp(32px,9vh,56px);padding-bottom:6px;}
   .calc-btn{height:clamp(44px,9.5vh,62px);}
 }
+@keyframes sosPulse{0%,100%{transform:scale(1);box-shadow:0 0 0 0 rgba(255,59,48,.55);}50%{transform:scale(1.04);box-shadow:0 0 0 28px rgba(255,59,48,0);}}
+@keyframes mapPulse{0%,100%{transform:scale(1);opacity:1;}50%{transform:scale(1.7);opacity:.15;}}
+@keyframes smokeFlash{0%,100%{background:#1a0000;}50%{background:#FF3B30;}}
+@keyframes sparkle{0%,100%{opacity:.15;transform:scale(.6);}50%{opacity:1;transform:scale(1.2);}}
+@keyframes reelSpin{0%{transform:translateY(0);}100%{transform:translateY(-70%);}}
+@keyframes confettiFall{0%{transform:translateY(-20px) rotate(0);opacity:1;}100%{transform:translateY(420px) rotate(720deg);opacity:0;}}
+@keyframes parkPin{0%{transform:translateY(-18px) scale(.6);opacity:0;}60%{transform:translateY(4px) scale(1.08);opacity:1;}100%{transform:translateY(0) scale(1);opacity:1;}}
+.sos-btn{width:220px;height:220px;border-radius:50%;border:none;background:radial-gradient(circle at 35% 30%,#ff6b5e,#FF3B30 55%,#b01010);color:#fff;font-size:22px;font-weight:800;letter-spacing:.5px;line-height:1.15;animation:sosPulse 1.4s ease-in-out infinite;cursor:pointer;}
+.sos-btn:active{transform:scale(.96);}
+.map-bg{background:linear-gradient(160deg,#1a3a2a 0%,#243d28 35%,#1e3324 60%,#2a4030 100%);background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(160deg,#1a3a2a,#243d28 40%,#1e3324);background-size:40px 40px,40px 40px,auto;}
+.dot-pulse{position:absolute;width:18px;height:18px;border-radius:50%;background:#0A84FF;box-shadow:0 0 0 4px rgba(10,132,255,.35);}
+.dot-pulse::after{content:'';position:absolute;inset:-10px;border-radius:50%;border:2px solid #0A84FF;animation:mapPulse 1.6s ease-out infinite;}
+.smoke-alert{animation:smokeFlash .45s steps(1) infinite;}
+.wheel-sheet{position:absolute;inset:0;z-index:210;display:flex;flex-direction:column;justify-content:flex-end;}
+.wheel-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.72);animation:fadeIn .2s;}
+.wheel-panel{position:relative;background:linear-gradient(180deg,#2a0845 0%,#12081f 45%,#0a0614 100%);border-radius:24px 24px 0 0;padding:18px 22px 36px;text-align:center;overflow:hidden;animation:upIn .3s cubic-bezier(.2,.8,.2,1);box-shadow:0 -8px 40px rgba(255,0,200,.25),inset 0 1px 0 rgba(255,255,255,.12);}
+.wheel-panel::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 20% 20%,rgba(255,0,200,.25),transparent 40%),radial-gradient(circle at 80% 10%,rgba(0,255,200,.18),transparent 35%);pointer-events:none;}
+.wheel-spark{position:absolute;width:6px;height:6px;border-radius:50%;background:#fff;animation:sparkle 1.2s ease-in-out infinite;pointer-events:none;}
+.wheel-reels{display:flex;gap:10px;justify-content:center;margin:22px 0 18px;position:relative;z-index:1;}
+.wheel-reel{width:78px;height:96px;border-radius:14px;background:linear-gradient(180deg,#1a1028,#0d0818);border:2px solid #ff2bd6;box-shadow:0 0 18px rgba(255,43,214,.45),inset 0 0 20px rgba(0,255,200,.08);overflow:hidden;display:flex;align-items:center;justify-content:center;font-size:42px;}
+.wheel-reel-strip{display:flex;flex-direction:column;align-items:center;gap:12px;will-change:transform;}
+.wheel-reel--spin .wheel-reel-strip{animation:reelSpin .18s linear infinite;}
+.wheel-spin-btn{position:relative;z-index:1;width:100%;padding:18px;border:none;border-radius:16px;font-size:22px;font-weight:800;letter-spacing:2px;color:#12081f;background:linear-gradient(180deg,#ffe56a,#ff9f0a);box-shadow:0 0 24px rgba(255,159,10,.55);cursor:pointer;}
+.wheel-spin-btn:active{transform:scale(.98);}
+.wheel-spin-btn:disabled{opacity:.55;cursor:default;}
+.wheel-corner{position:absolute;bottom:0;width:80px;height:80px;z-index:220;opacity:0;}
+.wheel-corner--l{left:0;}
+.wheel-corner--r{right:0;}
+.confetti-piece{position:absolute;top:0;width:8px;height:12px;border-radius:2px;animation:confettiFall 1.6s ease-in forwards;pointer-events:none;z-index:2;}
+.fa-row{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:.5px solid rgba(255,255,255,.1);cursor:pointer;}
+.park-arrow{width:0;height:0;border-left:28px solid transparent;border-right:28px solid transparent;border-bottom:64px solid #0A84FF;filter:drop-shadow(0 4px 12px rgba(10,132,255,.5));transition:transform .5s ease;}
+
+/* --- casino: shells --- */
+@keyframes shellA{0%,100%{transform:translate(0,0);}25%{transform:translate(90px,-14px);}50%{transform:translate(180px,0);}75%{transform:translate(90px,-14px);}}
+@keyframes shellB{0%,100%{transform:translateY(0);}50%{transform:translateY(-18px);}}
+@keyframes shellC{0%,100%{transform:translate(0,0);}25%{transform:translate(-90px,14px);}50%{transform:translate(-180px,0);}75%{transform:translate(-90px,14px);}}
+.cs-cups{display:flex;gap:12px;justify-content:center;margin:20px 0 16px;position:relative;z-index:1;height:104px;align-items:flex-end;}
+.cs-cup{width:78px;height:100px;position:relative;flex:0 0 auto;cursor:pointer;}
+.cs-cup-body{position:absolute;left:4px;bottom:0;width:70px;height:82px;border-radius:10px 10px 30px 30px;background:linear-gradient(180deg,#ff2bd6,#7a0f6a);border:2px solid rgba(255,255,255,.28);box-shadow:0 0 18px rgba(255,43,214,.45),inset 0 -8px 14px rgba(0,0,0,.4);transition:transform .32s cubic-bezier(.2,.8,.2,1);}
+.cs-cup--lift .cs-cup-body{transform:translateY(-46px) rotate(-10deg);}
+.cs-cup--sh0{animation:shellA .62s ease-in-out infinite;}
+.cs-cup--sh1{animation:shellB .62s ease-in-out infinite;}
+.cs-cup--sh2{animation:shellC .62s ease-in-out infinite;}
+.cs-ball{position:absolute;left:50%;bottom:4px;margin-left:-17px;width:34px;height:34px;border-radius:50%;background:radial-gradient(circle at 34% 28%,#fffbe0,#ffe56a 52%,#ff9f0a);box-shadow:0 0 16px rgba(255,229,106,.85);display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:800;color:#6b4400;letter-spacing:-.2px;}
+
+/* --- casino: fortune --- */
+.cs-wheel-wrap{position:relative;width:214px;height:214px;margin:18px auto 14px;z-index:1;}
+.cs-wheel{position:absolute;inset:0;border-radius:50%;border:4px solid #ffe56a;box-shadow:0 0 28px rgba(255,229,106,.5),inset 0 0 30px rgba(0,0,0,.45);}
+.cs-wheel-hub{position:absolute;left:50%;top:50%;width:36px;height:36px;margin:-18px 0 0 -18px;border-radius:50%;background:linear-gradient(180deg,#fff,#c9b8e0);box-shadow:0 2px 8px rgba(0,0,0,.5);z-index:2;}
+.cs-wheel-ptr{position:absolute;left:50%;top:-14px;margin-left:-11px;border-left:11px solid transparent;border-right:11px solid transparent;border-top:22px solid #fff;z-index:3;filter:drop-shadow(0 2px 5px rgba(0,0,0,.7));}
+.cs-wheel-lbl{position:absolute;left:50%;top:50%;font-size:12px;font-weight:800;letter-spacing:-.2px;white-space:nowrap;}
+
+/* --- casino: scratch --- */
+.cs-scratch{position:relative;width:100%;height:126px;margin:20px 0 16px;border-radius:16px;overflow:hidden;border:2px solid #00ffc8;box-shadow:0 0 20px rgba(0,255,200,.4);z-index:1;}
+.cs-scratch-under{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,#1a1028,#0d0818);font-size:21px;font-weight:800;text-align:center;padding:0 18px;line-height:1.25;}
+.cs-scratch-cv{position:absolute;inset:0;display:block;width:100%;height:100%;touch-action:none;cursor:crosshair;}
+
+/* --- casino: dice --- */
+@keyframes diceShake{0%,100%{transform:translateY(0) rotate(0);}20%{transform:translateY(-18px) rotate(-20deg);}45%{transform:translateY(5px) rotate(12deg);}70%{transform:translateY(-10px) rotate(18deg);}}
+.cs-dice{display:flex;gap:16px;justify-content:center;margin:22px 0 14px;position:relative;z-index:1;}
+.cs-die{width:76px;height:76px;border-radius:15px;background:linear-gradient(160deg,#fff,#d4d4d8);display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,1fr);padding:9px;box-shadow:0 8px 20px rgba(0,0,0,.55),inset 0 -4px 9px rgba(0,0,0,.14);}
+.cs-die--roll{animation:diceShake .34s ease-in-out infinite;}
+.cs-dice-sum{position:relative;z-index:1;font-size:17px;font-weight:700;color:#c9b8e0;}
+
+/* --- new app screens --- */
+@keyframes qrLine{0%{top:8%;}100%{top:90%;}}
+@keyframes docFlash{0%{opacity:.95;}100%{opacity:0;}}
+@keyframes dndIn{from{transform:translateY(16px);opacity:0;}to{transform:translateY(0);opacity:1;}}
+@keyframes battBlink{0%,100%{opacity:1;}50%{opacity:.5;}}
+@keyframes recPulse{0%,100%{transform:scale(1);}50%{transform:scale(1.12);}}
+.qr-corner{position:absolute;width:34px;height:34px;border:4px solid #30D158;}
+.doc-line{height:7px;border-radius:3px;background:#c9c9cf;}
 </style>
 </helmet>
 <div class="phone-shell">
@@ -237,21 +309,33 @@ a,a:hover{color:#0A84FF;}
 
   <sc-if value="{{ isMirror }}">
   <div style="position:absolute;inset:0;background:#000;overflow:hidden;">
-    <video autoplay="true" playsinline="true" webkit-playsinline="true" muted="true" ref="{{ videoRef }}" style="{{ mirrorVideoStyle }}"></video>
-    <sc-if value="{{ camLoading }}">
-      <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#8E8E93;font-size:15px;">Включение камеры…</div>
+    <video autoplay="true" muted="true" playsinline="true" webkit-playsinline="true" ref="{{ videoRef }}" style="{{ mirrorVideoStyle }}"></video>
+    <sc-if value="{{ camNeedsTap }}">
+      <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 36px;text-align:center;z-index:4;background:rgba(0,0,0,.72);">
+        <div style="font-size:22px;font-weight:700;margin-bottom:10px;">Фронтальная камера</div>
+        <div style="font-size:15px;color:#8E8E93;line-height:1.45;margin-bottom:22px;">На iPhone разрешение запрашивается только после нажатия. Нажмите кнопку ниже.</div>
+        <button onClick="{{ enableCamera }}" style="width:100%;padding:16px;border:none;border-radius:14px;background:#0A84FF;color:#fff;font-size:18px;font-weight:600;">Включить камеру</button>
+      </div>
     </sc-if>
-    <sc-if value="{{ camErr }}"><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#8E8E93;font-size:15px;text-align:center;padding:0 44px;line-height:1.5;">Нет доступа к камере. Разрешите доступ к фронтальной камере, чтобы включить зеркало.</div></sc-if>
+    <sc-if value="{{ camLoading }}">
+      <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#8E8E93;font-size:15px;z-index:3;">Включение камеры…</div>
+    </sc-if>
+    <sc-if value="{{ camErr }}">
+      <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#8E8E93;font-size:15px;text-align:center;padding:0 36px;line-height:1.5;z-index:4;gap:16px;">
+        <div>{{ camErrText }}</div>
+        <button onClick="{{ enableCamera }}" style="padding:14px 22px;border:none;border-radius:12px;background:#2C2C2E;color:#0A84FF;font-size:16px;font-weight:600;">Повторить</button>
+      </div>
+    </sc-if>
     <sc-if value="{{ mirrorWatermark }}">
-      <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;">
+      <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;z-index:2;">
         <div style="font-size:38px;font-weight:800;letter-spacing:2px;color:#FF3B30;transform:rotate(-15deg);text-shadow:0 2px 10px rgba(0,0,0,.55);opacity:.88;">MIRROR FREE</div>
       </div>
     </sc-if>
     <sc-if value="{{ mirrorTired }}">
-      <div style="position:absolute;bottom:118px;left:0;right:0;text-align:center;color:#fff;font-size:21px;font-weight:600;text-shadow:0 2px 8px rgba(0,0,0,.7);">Вы выглядите уставшим</div>
+      <div style="position:absolute;bottom:118px;left:0;right:0;text-align:center;color:#fff;font-size:21px;font-weight:600;text-shadow:0 2px 8px rgba(0,0,0,.7);z-index:2;">Вы выглядите уставшим</div>
     </sc-if>
     <sc-if value="{{ mirrorWatermark }}">
-      <button onClick="{{ mirrorRemove }}" style="position:absolute;bottom:42px;left:24px;right:24px;padding:16px;border:none;border-radius:16px;background:#0A84FF;color:#fff;font-size:18px;font-weight:600;">Убрать водяной знак</button>
+      <button onClick="{{ mirrorRemove }}" style="position:absolute;bottom:42px;left:24px;right:24px;padding:16px;border:none;border-radius:16px;background:#0A84FF;color:#fff;font-size:18px;font-weight:600;z-index:5;">Убрать водяной знак</button>
     </sc-if>
   </div>
   </sc-if>
@@ -275,6 +359,449 @@ a,a:hover{color:#0A84FF;}
   </div>
   </sc-if>
 
+  <sc-if value="{{ isSos }}">
+  <div style="position:absolute;inset:0;background:#0a0000;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 24px;">
+    <sc-if value="{{ sosIdle }}">
+      <div style="font-size:15px;font-weight:700;letter-spacing:3px;color:#FF3B30;margin-bottom:28px;">SOS</div>
+      <button onClick="{{ sosCall }}" class="sos-btn">ВЫЗВАТЬ<br/>ПОМОЩЬ</button>
+      <div style="position:absolute;bottom:40px;left:0;right:0;overflow:hidden;height:22px;">
+        <div style="white-space:nowrap;animation:mq 14s linear infinite;font-size:13px;font-weight:500;color:#ff8a80;">Работает 24/7 · Спасли 1 000 000 человек · Работает 24/7 · Спасли 1 000 000 человек ·</div>
+      </div>
+    </sc-if>
+    <sc-if value="{{ sosConnecting }}">
+      <div style="width:54px;height:54px;border-radius:50%;border:4px solid rgba(255,59,48,0.25);border-top-color:#FF3B30;animation:spin .8s linear infinite;"></div>
+      <div style="margin-top:22px;font-size:17px;font-weight:600;color:#fff;text-align:center;">Соединяем со службой спасения...</div>
+    </sc-if>
+    <sc-if value="{{ sosQueued }}">
+      <div style="width:72px;height:72px;border-radius:50%;background:#1C1C1E;display:flex;align-items:center;justify-content:center;margin-bottom:18px;">
+        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#30D158" stroke-width="2.5" stroke-linecap="round"><path d="M20 6 L9 17 L4 12"/></svg>
+      </div>
+      <div style="font-size:22px;font-weight:700;text-align:center;">Спасибо! Ваша заявка принята.</div>
+      <div style="font-size:16px;color:#8E8E93;margin-top:12px;text-align:center;line-height:1.45;">Перед вами в очереди: 400 человек.<br/>Ожидание ~6 часов</div>
+      <button onClick="{{ sosSkipQueue }}" style="margin-top:36px;width:100%;padding:16px;border:none;border-radius:14px;background:#FF3B30;color:#fff;font-size:17px;font-weight:600;">Пропустить очередь за $0.99</button>
+    </sc-if>
+    <sc-if value="{{ sosSkipped }}">
+      <div style="font-size:42px;margin-bottom:12px;">🎟️</div>
+      <div style="font-size:22px;font-weight:700;text-align:center;">Очередь пропущена!</div>
+      <div style="font-size:16px;color:#8E8E93;margin-top:12px;text-align:center;line-height:1.45;">Перед вами: 399 человек.<br/>Ожидание ~5 ч 59 мин</div>
+    </sc-if>
+  </div>
+  </sc-if>
+
+  <sc-if value="{{ isFindphone }}">
+  <div class="map-bg" style="position:absolute;inset:0;">
+    <div style="position:absolute;inset:0;background:radial-gradient(circle at 50% 48%,rgba(10,132,255,.18),transparent 42%);"></div>
+    <div style="position:absolute;left:50%;top:46%;transform:translate(-50%,-50%);text-align:center;">
+      <div style="position:relative;width:18px;height:18px;margin:0 auto 14px;"><div class="dot-pulse"></div></div>
+      <div style="font-size:17px;font-weight:700;text-shadow:0 2px 8px rgba(0,0,0,.6);">Ваш телефон</div>
+      <div style="font-size:13px;color:#d7ffe8;margin-top:4px;text-shadow:0 1px 6px rgba(0,0,0,.5);">Расстояние: 0 м · В вашей руке</div>
+    </div>
+    <sc-if value="{{ findFound }}">
+      <div style="position:absolute;top:108px;left:20px;right:20px;background:rgba(28,28,30,.92);border-radius:14px;padding:14px 16px;text-align:center;font-size:16px;font-weight:600;">Телефон найден! Он у вас в руке</div>
+    </sc-if>
+    <div style="position:absolute;left:20px;right:20px;bottom:36px;display:flex;flex-direction:column;gap:10px;">
+      <button onClick="{{ findBeep }}" style="padding:15px;border:none;border-radius:14px;background:#2C2C2E;color:#fff;font-size:17px;font-weight:600;">Издать звук</button>
+      <button onClick="{{ findLocate }}" style="padding:16px;border:none;border-radius:14px;background:#0A84FF;color:#fff;font-size:18px;font-weight:600;">Найти телефон</button>
+    </div>
+  </div>
+  </sc-if>
+
+  <sc-if value="{{ isSmoke }}">
+  <div style="{{ smokeScreenStyle }}">
+    <sc-if value="{{ smokeAlert }}">
+      <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 28px;text-align:center;">
+        <div style="font-size:28px;font-weight:900;letter-spacing:1px;color:#fff;text-shadow:0 2px 10px rgba(0,0,0,.5);">ОБНАРУЖЕН ДЫМ!</div>
+        <div style="margin-top:18px;width:88px;height:88px;border-radius:50%;background:rgba(0,0,0,.25);display:flex;align-items:center;justify-content:center;">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="#fff"><path d="M12 2c-1.5 2.5-4 4-4 7a4 4 0 0 0 8 0c0-3-2.5-4.5-4-7z"/><path d="M8 14c-2 1-3 2.5-3 4.5C5 20.4 8 22 12 22s7-1.6 7-3.5c0-2-1-3.5-3-4.5" opacity=".7"/></svg>
+        </div>
+      </div>
+    </sc-if>
+    <sc-if value="{{ smokeIdle }}">
+      <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 28px;text-align:center;">
+        <div style="width:110px;height:110px;border-radius:28px;background:#1C1C1E;display:flex;align-items:center;justify-content:center;margin-bottom:22px;">
+          <svg width="58" height="58" viewBox="0 0 24 24" fill="none" stroke="#8E8E93" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/></svg>
+        </div>
+        <div style="font-size:20px;font-weight:700;">Детектор дыма</div>
+        <div style="font-size:15px;color:#8E8E93;margin-top:8px;">Мониторинг воздуха...</div>
+      </div>
+    </sc-if>
+    <div style="position:absolute;left:20px;right:20px;bottom:36px;">
+      <button onClick="{{ smokeLocate }}" style="width:100%;padding:16px;border:none;border-radius:14px;background:#FF3B30;color:#fff;font-size:17px;font-weight:600;">Где источник?</button>
+      <sc-if value="{{ smokeLocated }}">
+        <div style="margin-top:12px;background:rgba(28,28,30,.95);border-radius:12px;padding:14px;text-align:center;font-size:15px;line-height:1.4;">Источник: кухня, левая конфорка, 2.4 метра от вас</div>
+      </sc-if>
+      <sc-if value="{{ smokeFreeHint }}">
+        <div style="margin-top:10px;text-align:center;font-size:13px;color:rgba(255,255,255,.7);">Бесплатная версия только пищит</div>
+      </sc-if>
+    </div>
+  </div>
+  </sc-if>
+
+  <sc-if value="{{ isFirstaid }}">
+  <div style="position:absolute;inset:0;background:#000;padding:96px 0 0;overflow-y:auto;">
+    <sc-if value="{{ faList }}">
+      <div style="padding:0 16px 8px;font-size:28px;font-weight:700;">Аптечка</div>
+      <div style="padding:0 16px 14px;font-size:11px;color:#636366;line-height:1.35;">Это шуточное приложение и не является медицинской рекомендацией</div>
+      <div style="background:#1C1C1E;margin:0 16px;border-radius:14px;overflow:hidden;">
+        <sc-for list="{{ faItems }}" as="item" hint-placeholder-count="7">
+          <div class="fa-row" onClick="{{ item.onTap }}">
+            <span style="font-size:17px;">{{ item.title }}</span>
+            <span style="{{ item.rightStyle }}">{{ item.right }}</span>
+          </div>
+        </sc-for>
+      </div>
+    </sc-if>
+    <sc-if value="{{ faDetail }}">
+      <div style="padding:0 16px;">
+        <div onClick="{{ faBack }}" style="color:#0A84FF;font-size:17px;margin-bottom:18px;cursor:pointer;">‹ Назад</div>
+        <div style="font-size:26px;font-weight:700;margin-bottom:8px;">{{ faTitle }}</div>
+        <div style="font-size:11px;color:#636366;margin-bottom:22px;">Это шуточное приложение и не является медицинской рекомендацией</div>
+        <div style="background:#1C1C1E;border-radius:14px;padding:22px 18px;font-size:18px;line-height:1.45;">Обратитесь к врачу</div>
+      </div>
+    </sc-if>
+  </div>
+  </sc-if>
+
+  <sc-if value="{{ isParking }}">
+  <div class="map-bg" style="position:absolute;inset:0;">
+    <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding-bottom:140px;">
+      <div class="park-arrow" style="{{ parkArrowStyle }}"></div>
+      <div style="margin-top:18px;font-size:16px;font-weight:600;text-align:center;text-shadow:0 2px 8px rgba(0,0,0,.55);">{{ parkHint }}</div>
+      <sc-if value="{{ parkSaved }}">
+        <div style="position:absolute;left:58%;top:42%;animation:parkPin .45s ease;">
+          <div style="width:18px;height:18px;border-radius:50% 50% 50% 0;background:#FF3B30;transform:rotate(-45deg);box-shadow:0 4px 10px rgba(0,0,0,.35);"></div>
+          <div style="margin-top:8px;margin-left:-20px;font-size:12px;font-weight:600;white-space:nowrap;">Место сохранено ✓</div>
+        </div>
+      </sc-if>
+    </div>
+    <div style="position:absolute;left:20px;right:20px;bottom:36px;display:flex;flex-direction:column;gap:10px;">
+      <button onClick="{{ parkRemember }}" style="padding:15px;border:none;border-radius:14px;background:#2C2C2E;color:#fff;font-size:17px;font-weight:600;">Запомнить место парковки</button>
+      <button onClick="{{ parkNavigate }}" style="padding:16px;border:none;border-radius:14px;background:#0A84FF;color:#fff;font-size:18px;font-weight:600;">Привести меня к машине</button>
+      <button onClick="{{ parkFaster }}" style="padding:14px;border:none;border-radius:14px;background:linear-gradient(90deg,#af52de,#ff2d55);color:#fff;font-size:16px;font-weight:700;">Найти быстрее</button>
+    </div>
+  </div>
+  </sc-if>
+
+  <sc-if value="{{ isPedometer }}">
+  <div style="position:absolute;inset:0;background:#000;padding:100px 20px 0;display:flex;flex-direction:column;align-items:center;">
+    <div style="align-self:flex-start;font-size:28px;font-weight:700;">Активность</div>
+    <div style="align-self:flex-start;font-size:13px;color:#8E8E93;margin-top:4px;">Сегодня · Цель 1000 шагов</div>
+    <div style="position:relative;width:216px;height:216px;margin-top:16px;">
+      <svg width="216" height="216" viewBox="0 0 216 216" style="transform:rotate(-90deg);">
+        <circle cx="108" cy="108" r="92" fill="none" stroke="#2e0f18" stroke-width="21"/>
+        <circle cx="108" cy="108" r="92" fill="none" stroke="#FF2D55" stroke-width="21" stroke-linecap="round" stroke-dasharray="{{ pedoDash }}" style="{{ pedoRingStyle }}"/>
+      </svg>
+      <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;">
+        <div style="font-size:52px;font-weight:700;letter-spacing:-2px;line-height:1;">{{ pedoSteps }}</div>
+        <div style="font-size:13px;color:#8E8E93;margin-top:4px;">из 1000 шагов</div>
+        <sc-if value="{{ pedoStuck }}">
+          <div style="margin-top:7px;font-size:11px;color:#FF9F0A;font-weight:700;text-align:center;">Счётчик застрял на {{ pedoSteps }}</div>
+        </sc-if>
+      </div>
+    </div>
+    <button onClick="{{ pedoStep }}" style="margin-top:22px;width:100%;padding:15px;border:none;border-radius:14px;background:#2C2C2E;color:#fff;font-size:17px;font-weight:600;">+ шаг</button>
+    <sc-if value="{{ pedoNeedPay }}">
+      <button onClick="{{ pedoUnlockTap }}" style="margin-top:10px;width:100%;padding:16px;border:none;border-radius:14px;background:linear-gradient(90deg,#FF2D55,#af52de);color:#fff;font-size:17px;font-weight:700;">Засчитать пропущенные шаги</button>
+    </sc-if>
+    <sc-if value="{{ pedoBonusDone }}">
+      <div style="margin-top:14px;font-size:15px;font-weight:600;color:#30D158;">Пропущенные шаги засчитаны: +90</div>
+    </sc-if>
+    <div style="margin-top:auto;padding-bottom:32px;text-align:center;font-size:13px;color:#636366;">Разблокируйте каждый 10-й шаг в Pro</div>
+  </div>
+  </sc-if>
+
+  <sc-if value="{{ isCooktimer }}">
+  <div style="position:absolute;inset:0;background:#000;padding:100px 20px 0;display:flex;flex-direction:column;align-items:center;">
+    <div style="align-self:flex-start;font-size:28px;font-weight:700;margin-bottom:24px;">Таймер</div>
+    <div style="font-size:80px;font-weight:200;font-variant-numeric:tabular-nums;letter-spacing:-3px;line-height:1;">{{ cookText }}</div>
+    <div style="font-size:15px;color:#8E8E93;margin-top:8px;">{{ cookSub }}</div>
+    <sc-if value="{{ cookWaiting }}">
+      <div style="margin-top:20px;background:#3a2a00;color:#FFD60A;border-radius:12px;padding:12px 18px;font-size:15px;font-weight:600;text-align:center;">Ваша еда ждёт... 🍳</div>
+    </sc-if>
+    <sc-if value="{{ cookDone }}">
+      <div style="margin-top:18px;font-size:58px;line-height:1;">🍳🔥</div>
+      <div style="margin-top:10px;font-size:22px;font-weight:700;color:#FF9F0A;">Готово!</div>
+      <div style="margin-top:6px;font-size:13px;color:#8E8E93;text-align:center;line-height:1.4;">Пока вы оплачивали последнюю минуту,<br/>блюдо немного подгорело</div>
+    </sc-if>
+    <div style="margin-top:26px;display:flex;gap:10px;">
+      <sc-for list="{{ cookPresets }}" as="p" hint-placeholder-count="3">
+        <div onClick="{{ p.onTap }}" style="{{ p.style }}">{{ p.label }}</div>
+      </sc-for>
+    </div>
+    <div style="margin-top:auto;width:100%;padding-bottom:32px;display:flex;flex-direction:column;gap:10px;">
+      <sc-if value="{{ cookCanStart }}">
+        <button onClick="{{ cookStart }}" style="width:100%;padding:16px;border:none;border-radius:14px;background:#0c2f16;color:#30D158;font-size:18px;font-weight:600;">Старт</button>
+      </sc-if>
+      <sc-if value="{{ cookRunning }}">
+        <button onClick="{{ cookPause }}" style="width:100%;padding:16px;border:none;border-radius:14px;background:#3a2a00;color:#FF9F0A;font-size:18px;font-weight:600;">Пауза</button>
+      </sc-if>
+      <button onClick="{{ cookReset }}" style="width:100%;padding:14px;border:none;border-radius:14px;background:#2C2C2E;color:#fff;font-size:16px;font-weight:600;">Сброс</button>
+    </div>
+  </div>
+  </sc-if>
+
+  <sc-if value="{{ isWeather }}">
+  <div style="position:absolute;inset:0;background:linear-gradient(180deg,#1d3f6b 0%,#0b1a2f 55%,#000 100%);padding:92px 18px 0;overflow-y:auto;">
+    <div style="text-align:center;">
+      <div style="font-size:22px;font-weight:600;">Москва</div>
+      <div style="font-size:96px;font-weight:200;letter-spacing:-5px;line-height:1.05;">{{ wxTemp }}</div>
+      <div style="font-size:56px;line-height:1;">☀️</div>
+      <div style="font-size:14px;color:#a8c4e8;margin-top:8px;">Ясно · Макс 24° Мин 12°</div>
+      <div style="font-size:12px;color:#7f93b0;margin-top:8px;">Луна доступна в Pro</div>
+    </div>
+    <div style="margin-top:24px;display:grid;grid-template-columns:1fr 1fr;gap:12px;padding-bottom:36px;">
+      <sc-for list="{{ wxBlocks }}" as="b" hint-placeholder-count="4">
+        <div onClick="{{ b.onTap }}" style="{{ b.style }}">
+          <div style="font-size:11px;color:#a8c4e8;letter-spacing:.6px;text-transform:uppercase;font-weight:600;">{{ b.title }}</div>
+          <div style="{{ b.valStyle }}">{{ b.value }}</div>
+          <sc-if value="{{ b.locked }}">
+            <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="rgba(255,255,255,.92)"><path d="M17 9V7a5 5 0 0 0-10 0v2H5.5v13h13V9zm-8 0V7a3 3 0 0 1 6 0v2z"/></svg>
+            </div>
+          </sc-if>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+  </sc-if>
+
+  <sc-if value="{{ isQr }}">
+  <div style="position:absolute;inset:0;background:#000;overflow:hidden;">
+    <video autoplay="true" muted="true" playsinline="true" webkit-playsinline="true" ref="{{ videoRef }}" style="{{ qrVideoStyle }}"></video>
+    <div style="position:absolute;inset:0;background:rgba(0,0,0,.42);pointer-events:none;"></div>
+    <sc-if value="{{ camNeedsTap }}">
+      <div style="position:absolute;left:18px;right:18px;top:108px;z-index:6;background:rgba(28,28,30,.96);border-radius:16px;padding:16px;text-align:center;">
+        <div style="font-size:15px;color:#8E8E93;margin-bottom:12px;line-height:1.4;">Для камеры на iPhone нажмите кнопку — появится системный запрос разрешения.</div>
+        <button onClick="{{ enableCamera }}" style="width:100%;padding:14px;border:none;border-radius:12px;background:#0A84FF;color:#fff;font-size:16px;font-weight:600;">Включить камеру</button>
+      </div>
+    </sc-if>
+    <sc-if value="{{ qrLoading }}">
+      <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#8E8E93;font-size:15px;">Включение камеры…</div>
+    </sc-if>
+    <sc-if value="{{ qrCamErr }}">
+      <div style="position:absolute;top:38%;left:0;right:0;text-align:center;color:#8E8E93;font-size:14px;padding:0 44px;line-height:1.5;z-index:5;">
+        <div>{{ camErrText }}</div>
+        <button onClick="{{ enableCamera }}" style="margin-top:14px;padding:12px 18px;border:none;border-radius:12px;background:#2C2C2E;color:#0A84FF;font-size:15px;font-weight:600;">Повторить</button>
+      </div>
+    </sc-if>
+    <div style="position:absolute;left:50%;top:34%;transform:translate(-50%,-50%);width:224px;height:224px;">
+      <div class="qr-corner" style="left:0;top:0;border-right:none;border-bottom:none;border-radius:8px 0 0 0;"></div>
+      <div class="qr-corner" style="right:0;top:0;border-left:none;border-bottom:none;border-radius:0 8px 0 0;"></div>
+      <div class="qr-corner" style="left:0;bottom:0;border-right:none;border-top:none;border-radius:0 0 0 8px;"></div>
+      <div class="qr-corner" style="right:0;bottom:0;border-left:none;border-top:none;border-radius:0 0 8px 0;"></div>
+      <div style="position:absolute;left:8%;right:8%;height:2px;background:#30D158;box-shadow:0 0 12px #30D158;animation:qrLine 1.8s ease-in-out infinite alternate;"></div>
+    </div>
+    <div style="position:absolute;left:18px;right:18px;bottom:32px;background:rgba(28,28,30,.96);border-radius:18px;padding:18px;">
+      <div style="font-size:12px;color:#8E8E93;">Код найден · Результат сканирования</div>
+      <div style="{{ qrResultStyle }}">{{ qrResult }}</div>
+      <sc-if value="{{ qrLocked }}">
+        <button onClick="{{ qrReveal }}" style="margin-top:16px;width:100%;padding:15px;border:none;border-radius:14px;background:#0A84FF;color:#fff;font-size:17px;font-weight:600;">Показать содержимое</button>
+        <div style="margin-top:10px;text-align:center;font-size:12px;color:#636366;">Сканирование бесплатно. Чтение — нет.</div>
+      </sc-if>
+      <sc-if value="{{ qrOpened }}">
+        <button onClick="{{ qrAgain }}" style="margin-top:16px;width:100%;padding:15px;border:none;border-radius:14px;background:#2C2C2E;color:#fff;font-size:17px;font-weight:600;">Сканировать другой</button>
+      </sc-if>
+    </div>
+  </div>
+  </sc-if>
+
+  <sc-if value="{{ isBatteryapp }}">
+  <div style="position:absolute;inset:0;background:#000;padding:100px 22px 0;display:flex;flex-direction:column;align-items:center;">
+    <div style="align-self:flex-start;font-size:28px;font-weight:700;">Батарея</div>
+    <div style="{{ battPctStyle }}">{{ battText }}</div>
+    <div style="display:flex;align-items:center;margin-top:6px;">
+      <div style="width:190px;height:88px;border:4px solid #48484A;border-radius:16px;padding:6px;">
+        <div style="{{ battFillStyle }}"></div>
+      </div>
+      <div style="width:9px;height:28px;background:#48484A;border-radius:0 4px 4px 0;"></div>
+    </div>
+    <div style="font-size:14px;color:#8E8E93;margin-top:16px;text-align:center;line-height:1.4;">{{ battRateText }}</div>
+    <sc-if value="{{ battSaved }}">
+      <div style="margin-top:18px;background:#0c2f16;color:#30D158;border-radius:12px;padding:13px 16px;font-size:14px;font-weight:600;text-align:center;line-height:1.4;">Энергосбережение тратит энергию на подсчёт экономии</div>
+    </sc-if>
+    <div style="margin-top:auto;width:100%;padding-bottom:32px;">
+      <sc-if value="{{ battCanSave }}">
+        <button onClick="{{ battSaveTap }}" style="width:100%;padding:16px;border:none;border-radius:14px;background:linear-gradient(90deg,#30D158,#0A84FF);color:#fff;font-size:18px;font-weight:700;">Энергосбережение</button>
+      </sc-if>
+      <sc-if value="{{ battFrozen }}">
+        <div style="text-align:center;font-size:13px;color:#636366;">Заряд заморожен. Навсегда. Вероятно.</div>
+      </sc-if>
+    </div>
+  </div>
+  </sc-if>
+
+  <sc-if value="{{ isDnd }}">
+  <div style="{{ dndScreenStyle }}">
+    <div style="position:absolute;top:92px;left:0;right:0;text-align:center;font-size:28px;font-weight:700;">Не беспокоить</div>
+    <div style="position:absolute;left:0;right:0;top:40%;transform:translateY(-50%);display:flex;flex-direction:column;align-items:center;">
+      <div onClick="{{ dndToggle }}" style="{{ dndOrbStyle }}">
+        <sc-if value="{{ dndOn }}">
+          <svg width="70" height="70" viewBox="0 0 24 24" fill="#fff"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5 8.6 8.6 0 1 0 20.5 14.6z"/></svg>
+        </sc-if>
+        <sc-if value="{{ dndOff }}">
+          <svg width="66" height="66" viewBox="0 0 24 24" fill="none" stroke="#8E8E93" stroke-width="1.7" stroke-linecap="round"><path d="M12 2.5a2 2 0 0 0-2 2v.4A6.5 6.5 0 0 0 5.5 11c0 3.6-1.2 4.9-1.9 5.6A1 1 0 0 0 4.4 18.4h15.2a1 1 0 0 0 .8-1.8C19.7 15.9 18.5 14.6 18.5 11"/><path d="M9.3 20a2.7 2.7 0 0 0 5.4 0"/><line x1="3.5" y1="3.5" x2="20.5" y2="20.5" stroke="#FF453A" stroke-width="2"/></svg>
+        </sc-if>
+      </div>
+      <div style="margin-top:24px;font-size:21px;font-weight:600;">{{ dndTitle }}</div>
+      <div style="margin-top:8px;font-size:15px;color:#8E8E93;text-align:center;padding:0 40px;line-height:1.45;">{{ dndSub }}</div>
+      <sc-if value="{{ dndOn }}">
+        <div style="margin-top:18px;font-size:16px;font-weight:700;color:#FF453A;">Пропущено вызовов: {{ dndMissed }}</div>
+      </sc-if>
+    </div>
+    <sc-if value="{{ dndOn }}">
+    <div style="position:absolute;left:14px;right:14px;bottom:104px;display:flex;flex-direction:column;gap:8px;">
+      <sc-for list="{{ dndFeed }}" as="n" hint-placeholder-count="3">
+        <div style="{{ n.style }}">
+          <div style="width:32px;height:32px;border-radius:50%;background:#FF453A;display:flex;align-items:center;justify-content:center;font-size:15px;flex:0 0 auto;">📞</div>
+          <div style="flex:1;min-width:0;">
+            <div style="font-size:14px;font-weight:600;">Пропущенный вызов</div>
+            <div style="font-size:12px;color:#8E8E93;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">{{ n.name }}</div>
+          </div>
+          <div style="font-size:11px;color:#8E8E93;flex:0 0 auto;">сейчас</div>
+        </div>
+      </sc-for>
+    </div>
+    </sc-if>
+    <div style="position:absolute;left:20px;right:20px;bottom:32px;">
+      <sc-if value="{{ dndOn }}">
+        <button onClick="{{ dndToggle }}" style="width:100%;padding:16px;border:none;border-radius:14px;background:#0A84FF;color:#fff;font-size:18px;font-weight:600;">Выключить тишину</button>
+      </sc-if>
+      <sc-if value="{{ dndOff }}">
+        <div style="text-align:center;font-size:13px;color:#636366;">Тишина выключена. Вызовы снова доходят.</div>
+      </sc-if>
+    </div>
+  </div>
+  </sc-if>
+
+  <sc-if value="{{ isDocs }}">
+  <div style="position:absolute;inset:0;background:#0b0b0c;padding:92px 18px 0;display:flex;flex-direction:column;">
+    <div style="font-size:28px;font-weight:700;">Сканер документов</div>
+    <sc-if value="{{ docLost }}">
+      <div style="margin-top:12px;background:#3a1010;color:#FF453A;border-radius:12px;padding:12px 14px;font-size:14px;font-weight:600;">Несохранённый скан утерян</div>
+    </sc-if>
+    <sc-if value="{{ docDamaged }}">
+      <div style="margin-top:12px;background:#3a2a00;color:#FFD60A;border-radius:12px;padding:12px 14px;font-size:14px;font-weight:600;">Скан повреждён, отсканируйте заново</div>
+    </sc-if>
+    <div style="{{ docFrameStyle }}">
+      <sc-if value="{{ docEmpty }}">
+        <div style="text-align:center;color:#8E8E93;font-size:15px;padding:0 28px;line-height:1.5;">Наведите камеру на документ<br/>и нажмите «Сканировать»</div>
+        <div class="qr-corner" style="left:14px;top:14px;border-right:none;border-bottom:none;border-color:#5E5CE6;border-radius:8px 0 0 0;"></div>
+        <div class="qr-corner" style="right:14px;top:14px;border-left:none;border-bottom:none;border-color:#5E5CE6;border-radius:0 8px 0 0;"></div>
+        <div class="qr-corner" style="left:14px;bottom:14px;border-right:none;border-top:none;border-color:#5E5CE6;border-radius:0 0 0 8px;"></div>
+        <div class="qr-corner" style="right:14px;bottom:14px;border-left:none;border-top:none;border-color:#5E5CE6;border-radius:0 0 8px 0;"></div>
+      </sc-if>
+      <sc-if value="{{ docScanned }}">
+        <div style="width:196px;background:#f4f4f6;border-radius:6px;padding:18px 16px;display:flex;flex-direction:column;gap:8px;box-shadow:0 10px 30px rgba(0,0,0,.6);">
+          <div class="doc-line" style="width:64%;height:11px;background:#8e8e96;"></div>
+          <div class="doc-line" style="width:100%;"></div>
+          <div class="doc-line" style="width:92%;"></div>
+          <div class="doc-line" style="width:96%;"></div>
+          <div class="doc-line" style="width:70%;"></div>
+          <div class="doc-line" style="width:100%;margin-top:8px;"></div>
+          <div class="doc-line" style="width:84%;"></div>
+          <div class="doc-line" style="width:44%;height:11px;background:#8e8e96;margin-top:10px;"></div>
+        </div>
+        <div style="position:absolute;left:14px;bottom:14px;background:rgba(48,209,88,.16);color:#30D158;border-radius:9px;padding:6px 11px;font-size:12px;font-weight:700;">Идеальный скан · 100%</div>
+      </sc-if>
+      <sc-if value="{{ docFlash }}">
+        <div style="position:absolute;inset:0;background:#fff;animation:docFlash .42s ease-out forwards;"></div>
+      </sc-if>
+    </div>
+    <sc-if value="{{ docSaved }}">
+      <div style="margin-top:14px;display:flex;align-items:center;gap:8px;color:#30D158;font-size:15px;font-weight:600;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#30D158" stroke-width="3" stroke-linecap="round"><path d="M20 6 L9 17 L4 12"/></svg>
+        <span>Скан сохранён и отправлен</span>
+      </div>
+    </sc-if>
+    <div style="margin-top:auto;padding-bottom:32px;display:flex;flex-direction:column;gap:10px;">
+      <sc-if value="{{ docCanScan }}">
+        <button onClick="{{ docScan }}" style="width:100%;padding:16px;border:none;border-radius:14px;background:#5E5CE6;color:#fff;font-size:18px;font-weight:600;">Сканировать</button>
+      </sc-if>
+      <sc-if value="{{ docCanSave }}">
+        <button onClick="{{ docSaveTap }}" style="width:100%;padding:16px;border:none;border-radius:14px;background:#0A84FF;color:#fff;font-size:18px;font-weight:600;">Сохранить / Отправить</button>
+      </sc-if>
+      <div style="text-align:center;font-size:12px;color:#636366;">В бесплатной версии скан можно только посмотреть</div>
+    </div>
+  </div>
+  </sc-if>
+
+  <sc-if value="{{ isVoice }}">
+  <div style="position:absolute;inset:0;background:#000;padding:92px 0 0;display:flex;flex-direction:column;">
+    <div style="padding:0 18px;font-size:28px;font-weight:700;">Диктофон</div>
+    <div style="padding:6px 18px 0;font-size:13px;color:#8E8E93;">Ваш голос — теперь премиум-контент</div>
+    <div style="margin-top:14px;flex:1;overflow-y:auto;">
+      <sc-if value="{{ voiceEmpty }}">
+        <div style="padding:54px 40px;text-align:center;color:#636366;font-size:15px;line-height:1.5;">Записей пока нет.<br/>Нажмите кнопку записи внизу.</div>
+      </sc-if>
+      <sc-for list="{{ voiceList }}" as="m" hint-placeholder-count="3">
+        <div style="display:flex;align-items:center;gap:12px;padding:12px 18px;border-bottom:.5px solid rgba(255,255,255,.1);">
+          <div onClick="{{ m.onPlay }}" style="{{ m.playStyle }}">▶</div>
+          <div style="flex:1;min-width:0;">
+            <div style="font-size:17px;font-weight:600;">{{ m.title }}</div>
+            <div style="font-size:12px;color:#8E8E93;">{{ m.meta }}</div>
+          </div>
+          <div style="font-size:14px;color:#8E8E93;flex:0 0 auto;">{{ m.dur }}</div>
+        </div>
+      </sc-for>
+    </div>
+    <sc-if value="{{ voiceFail }}">
+      <div style="padding:10px 18px;color:#FF453A;font-size:14px;font-weight:600;">Прослушивание не засчитано</div>
+    </sc-if>
+    <sc-if value="{{ voicePlayingNow }}">
+      <div style="padding:10px 18px;color:#30D158;font-size:14px;font-weight:600;">Воспроизведение… тишина в подарок</div>
+    </sc-if>
+    <div style="padding:16px 0 30px;display:flex;flex-direction:column;align-items:center;gap:10px;border-top:.5px solid rgba(255,255,255,.1);">
+      <sc-if value="{{ voiceRecording }}">
+        <div style="font-size:14px;color:#FF453A;font-weight:600;font-variant-numeric:tabular-nums;">Запись… {{ voiceRecText }}</div>
+      </sc-if>
+      <div onClick="{{ voiceToggleRec }}" style="{{ voiceRecBtnStyle }}"><div style="{{ voiceRecInnerStyle }}"></div></div>
+      <div style="font-size:12px;color:#636366;">Запись бесплатна. Прослушивание — $0.99 за раз</div>
+    </div>
+  </div>
+  </sc-if>
+
+  <sc-if value="{{ isCurrency }}">
+  <div style="position:absolute;inset:0;background:#000;padding:100px 18px 0;">
+    <div style="font-size:28px;font-weight:700;margin-bottom:20px;">Конвертер</div>
+    <div style="background:#1C1C1E;border-radius:16px;padding:15px 16px;">
+      <div style="font-size:12px;color:#8E8E93;">Из</div>
+      <div style="display:flex;align-items:center;gap:10px;margin-top:8px;">
+        <input value="{{ curAmount }}" onChange="{{ setCurAmount }}" style="flex:1;min-width:0;background:transparent;border:none;color:#fff;font-size:30px;font-weight:600;outline:none;padding:0;"/>
+        <div onClick="{{ curOpenFrom }}" style="{{ curPillStyle }}">{{ curFromLabel }} ›</div>
+      </div>
+    </div>
+    <div style="display:flex;justify-content:center;margin:10px 0;">
+      <div onClick="{{ curSwap }}" style="width:42px;height:42px;border-radius:50%;background:#1C1C1E;display:flex;align-items:center;justify-content:center;font-size:19px;cursor:pointer;">⇅</div>
+    </div>
+    <div style="background:#1C1C1E;border-radius:16px;padding:15px 16px;">
+      <div style="font-size:12px;color:#8E8E93;">В</div>
+      <div style="display:flex;align-items:center;gap:10px;margin-top:8px;">
+        <div style="flex:1;min-width:0;font-size:30px;font-weight:600;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">{{ curResult }}</div>
+        <div onClick="{{ curOpenTo }}" style="{{ curPillStyle }}">{{ curToLabel }} ›</div>
+      </div>
+    </div>
+    <div style="margin-top:18px;text-align:center;font-size:15px;color:#fff;font-weight:600;">{{ curRateText }}</div>
+    <div style="margin-top:6px;text-align:center;font-size:13px;color:#8E8E93;">Курс дня: 1 USD = 47 Скибиди-долларов</div>
+    <div style="margin-top:14px;text-align:center;font-size:12px;color:#636366;line-height:1.5;">Кринжи, Вайбаксы, Ноускоины и Скибиди-доллары<br/>бесплатны. Реальные валюты — в Pro.</div>
+    <sc-if value="{{ curPickerOpen }}">
+    <div style="position:absolute;inset:0;z-index:90;">
+      <div onClick="{{ curPickerClose }}" style="position:absolute;inset:0;background:rgba(0,0,0,.62);animation:fadeIn .2s;"></div>
+      <div style="position:absolute;left:0;right:0;bottom:0;background:#1C1C1E;border-radius:20px 20px 0 0;padding:14px 0 28px;animation:upIn .26s cubic-bezier(.2,.8,.2,1);">
+        <div style="width:38px;height:5px;border-radius:3px;background:#48484A;margin:0 auto 16px;"></div>
+        <div style="padding:0 18px 10px;font-size:19px;font-weight:700;">Выберите валюту</div>
+        <sc-for list="{{ curOptions }}" as="o" hint-placeholder-count="7">
+          <div onClick="{{ o.onTap }}" style="display:flex;align-items:center;gap:11px;padding:13px 18px;border-top:.5px solid rgba(255,255,255,.08);cursor:pointer;">
+            <span style="font-size:20px;flex:0 0 auto;">{{ o.flag }}</span>
+            <span style="{{ o.nameStyle }}">{{ o.name }}</span>
+            <span style="{{ o.rightStyle }}">{{ o.right }}</span>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+    </sc-if>
+  </div>
+  </sc-if>
+
   <sc-if value="{{ menuOpen }}">
   <div style="position:absolute;inset:0;z-index:100;">
     <div onClick="{{ closeMenu }}" style="position:absolute;inset:0;background:rgba(0,0,0,0.5);animation:fadeIn .2s ease;"></div>
@@ -289,12 +816,134 @@ a,a:hover{color:#0A84FF;}
       <div onClick="{{ sel.contacts }}" style="display:flex;align-items:center;gap:14px;padding:11px 20px;cursor:pointer;">{{ icons.contacts }}<span style="font-size:17px;font-weight:500;">Контакты</span></div>
       <div onClick="{{ sel.mirror }}" style="display:flex;align-items:center;gap:14px;padding:11px 20px;cursor:pointer;">{{ icons.mirror }}<span style="font-size:17px;font-weight:500;">Зеркало</span></div>
       <div onClick="{{ sel.translator }}" style="display:flex;align-items:center;gap:14px;padding:11px 20px;cursor:pointer;">{{ icons.translator }}<span style="font-size:17px;font-weight:500;">Переводчик</span></div>
+      <div onClick="{{ sel.sos }}" style="display:flex;align-items:center;gap:14px;padding:11px 20px;cursor:pointer;">{{ icons.sos }}<span style="font-size:17px;font-weight:500;">SOS</span></div>
+      <div onClick="{{ sel.findphone }}" style="display:flex;align-items:center;gap:14px;padding:11px 20px;cursor:pointer;">{{ icons.findphone }}<span style="font-size:17px;font-weight:500;">Найти телефон</span></div>
+      <div onClick="{{ sel.smoke }}" style="display:flex;align-items:center;gap:14px;padding:11px 20px;cursor:pointer;">{{ icons.smoke }}<span style="font-size:17px;font-weight:500;">Детектор дыма</span></div>
+      <div onClick="{{ sel.firstaid }}" style="display:flex;align-items:center;gap:14px;padding:11px 20px;cursor:pointer;">{{ icons.firstaid }}<span style="font-size:17px;font-weight:500;">Аптечка</span></div>
+      <div onClick="{{ sel.parking }}" style="display:flex;align-items:center;gap:14px;padding:11px 20px;cursor:pointer;">{{ icons.parking }}<span style="font-size:17px;font-weight:500;">Где машина</span></div>
+      <div onClick="{{ sel.pedometer }}" style="display:flex;align-items:center;gap:14px;padding:11px 20px;cursor:pointer;">{{ icons.pedometer }}<span style="font-size:17px;font-weight:500;">Шагомер</span></div>
+      <div onClick="{{ sel.cooktimer }}" style="display:flex;align-items:center;gap:14px;padding:11px 20px;cursor:pointer;">{{ icons.cooktimer }}<span style="font-size:17px;font-weight:500;">Таймер для еды</span></div>
+      <div onClick="{{ sel.weather }}" style="display:flex;align-items:center;gap:14px;padding:11px 20px;cursor:pointer;">{{ icons.weather }}<span style="font-size:17px;font-weight:500;">Погода</span></div>
+      <div onClick="{{ sel.qr }}" style="display:flex;align-items:center;gap:14px;padding:11px 20px;cursor:pointer;">{{ icons.qr }}<span style="font-size:17px;font-weight:500;">QR-сканер</span></div>
+      <div onClick="{{ sel.batteryapp }}" style="display:flex;align-items:center;gap:14px;padding:11px 20px;cursor:pointer;">{{ icons.batteryapp }}<span style="font-size:17px;font-weight:500;">Батарея</span></div>
+      <div onClick="{{ sel.dnd }}" style="display:flex;align-items:center;gap:14px;padding:11px 20px;cursor:pointer;">{{ icons.dnd }}<span style="font-size:17px;font-weight:500;">Не беспокоить</span></div>
+      <div onClick="{{ sel.docs }}" style="display:flex;align-items:center;gap:14px;padding:11px 20px;cursor:pointer;">{{ icons.docs }}<span style="font-size:17px;font-weight:500;">Сканер документов</span></div>
+      <div onClick="{{ sel.voice }}" style="display:flex;align-items:center;gap:14px;padding:11px 20px;cursor:pointer;">{{ icons.voice }}<span style="font-size:17px;font-weight:500;">Диктофон</span></div>
+      <div onClick="{{ sel.currency }}" style="display:flex;align-items:center;gap:14px;padding:11px 20px;cursor:pointer;">{{ icons.currency }}<span style="font-size:17px;font-weight:500;">Конвертер валют</span></div>
       <div style="flex:1;min-height:16px;"></div>
+      <div onClick="{{ toggleSmokeSim }}" style="display:flex;align-items:center;gap:12px;padding:14px 20px;border-top:0.5px solid rgba(255,255,255,0.1);cursor:pointer;">
+        <span style="flex:1;font-size:16px;">Симуляция задымления</span>
+        <div style="{{ smokeTrackStyle }}"><div style="{{ smokeKnobStyle }}"></div></div>
+      </div>
       <div onClick="{{ toggleOffline }}" style="display:flex;align-items:center;gap:12px;padding:16px 20px;border-top:0.5px solid rgba(255,255,255,0.1);cursor:pointer;">
         <span style="flex:1;font-size:16px;">Режим без сети</span>
         <div style="{{ offlineTrackStyle }}"><div style="{{ offlineKnobStyle }}"></div></div>
       </div>
     </div>
+  </div>
+  </sc-if>
+
+  <sc-if value="{{ casinoActive }}">
+  <div class="wheel-sheet">
+    <div onClick="{{ closeCasino }}" class="wheel-backdrop"></div>
+    <div class="wheel-panel">
+      <div class="wheel-spark" style="left:18%;top:22px;animation-delay:0s;background:#ff2bd6;"></div>
+      <div class="wheel-spark" style="left:72%;top:36px;animation-delay:.3s;background:#00ffc8;"></div>
+      <div class="wheel-spark" style="left:40%;top:14px;animation-delay:.6s;background:#ffe56a;"></div>
+      <div class="wheel-spark" style="left:88%;top:70px;animation-delay:.9s;background:#ff9f0a;"></div>
+      <div style="position:relative;z-index:1;font-size:22px;font-weight:800;background:linear-gradient(90deg,#ffe56a,#ff2bd6,#00ffc8);-webkit-background-clip:text;background-clip:text;color:transparent;">{{ casinoTitle }}</div>
+
+      <sc-if value="{{ csSlots }}">
+        <div class="wheel-reels">
+          <div class="{{ reelClass }}">
+            <sc-if value="{{ csSlotsSpin }}"><div class="wheel-reel-strip"><span>🍒</span><span>⭐</span><span>7️⃣</span><span>🔔</span><span>💎</span><span>💰</span></div></sc-if>
+            <sc-if value="{{ csSlotsStill }}"><span>{{ reelA }}</span></sc-if>
+          </div>
+          <div class="{{ reelClass }}">
+            <sc-if value="{{ csSlotsSpin }}"><div class="wheel-reel-strip"><span>💎</span><span>7️⃣</span><span>🍒</span><span>⭐</span><span>🔔</span><span>💰</span></div></sc-if>
+            <sc-if value="{{ csSlotsStill }}"><span>{{ reelB }}</span></sc-if>
+          </div>
+          <div class="{{ reelClass }}">
+            <sc-if value="{{ csSlotsSpin }}"><div class="wheel-reel-strip"><span>🔔</span><span>💰</span><span>⭐</span><span>7️⃣</span><span>💎</span><span>🍒</span></div></sc-if>
+            <sc-if value="{{ csSlotsStill }}"><span>{{ reelC }}</span></sc-if>
+          </div>
+        </div>
+        <sc-if value="{{ csIdle }}"><button onClick="{{ casinoPlay }}" class="wheel-spin-btn">SPIN</button></sc-if>
+        <sc-if value="{{ csBusy }}"><button class="wheel-spin-btn" disabled="true">SPIN...</button></sc-if>
+      </sc-if>
+
+      <sc-if value="{{ csShells }}">
+        <div class="cs-cups">
+          <sc-for list="{{ csCups }}" as="cup" hint-placeholder-count="3">
+            <div onClick="{{ cup.onTap }}" class="{{ cup.cls }}">
+              <sc-if value="{{ cup.ball }}"><div class="cs-ball">PRO</div></sc-if>
+              <div class="cs-cup-body"></div>
+            </div>
+          </sc-for>
+        </div>
+        <div style="position:relative;z-index:1;font-size:14px;color:#c9b8e0;margin-bottom:14px;">{{ csShellHint }}</div>
+        <sc-if value="{{ csIdle }}"><button onClick="{{ casinoPlay }}" class="wheel-spin-btn">ПЕРЕМЕШАТЬ</button></sc-if>
+        <sc-if value="{{ csShellsBusy }}"><button class="wheel-spin-btn" disabled="true">{{ csShellsBtn }}</button></sc-if>
+      </sc-if>
+
+      <sc-if value="{{ csFortune }}">
+        <div class="cs-wheel-wrap">
+          <div class="cs-wheel" style="{{ csWheelStyle }}">
+            <sc-for list="{{ csSectors }}" as="s" hint-placeholder-count="4">
+              <div class="cs-wheel-lbl" style="{{ s.style }}">{{ s.label }}</div>
+            </sc-for>
+          </div>
+          <div class="cs-wheel-hub"></div>
+          <div class="cs-wheel-ptr"></div>
+        </div>
+        <sc-if value="{{ csIdle }}"><button onClick="{{ casinoPlay }}" class="wheel-spin-btn">КРУТИТЬ</button></sc-if>
+        <sc-if value="{{ csBusy }}"><button class="wheel-spin-btn" disabled="true">КРУТИМ…</button></sc-if>
+      </sc-if>
+
+      <sc-if value="{{ csScratch }}">
+        <div class="cs-scratch">
+          <div class="cs-scratch-under" style="{{ csScratchTextStyle }}">{{ csScratchText }}</div>
+          <canvas ref="{{ scratchRef }}" onPointerDown="{{ scratchDown }}" onPointerMove="{{ scratchMove }}" onPointerUp="{{ scratchUp }}" onPointerLeave="{{ scratchUp }}" class="cs-scratch-cv"></canvas>
+        </div>
+        <div style="position:relative;z-index:1;font-size:14px;color:#c9b8e0;margin-bottom:14px;">{{ csScratchHint }}</div>
+        <sc-if value="{{ csScratchSkip }}"><button onClick="{{ casinoPlay }}" class="wheel-spin-btn">СТЕРЕТЬ ВСЁ</button></sc-if>
+      </sc-if>
+
+      <sc-if value="{{ csDice }}">
+        <div class="cs-dice">
+          <div class="{{ csDieClass }}">
+            <sc-for list="{{ csDie1 }}" as="p" hint-placeholder-count="9"><div style="{{ p.style }}"></div></sc-for>
+          </div>
+          <div class="{{ csDieClass }}">
+            <sc-for list="{{ csDie2 }}" as="p" hint-placeholder-count="9"><div style="{{ p.style }}"></div></sc-for>
+          </div>
+        </div>
+        <div class="cs-dice-sum">{{ csDiceText }}</div>
+        <sc-if value="{{ csIdle }}"><button onClick="{{ casinoPlay }}" class="wheel-spin-btn" style="margin-top:14px;">Бросить</button></sc-if>
+        <sc-if value="{{ csBusy }}"><button class="wheel-spin-btn" disabled="true" style="margin-top:14px;">Бросаем…</button></sc-if>
+      </sc-if>
+
+      <sc-if value="{{ casinoLose }}">
+        <div style="position:relative;z-index:1;font-size:20px;font-weight:700;color:#fff;margin:16px 0 8px;">{{ casinoLoseTitle }}</div>
+        <div style="position:relative;z-index:1;font-size:15px;color:#c9b8e0;margin-bottom:16px;">Ещё одна попытка — $0.99</div>
+        <button onClick="{{ casinoRetry }}" class="wheel-spin-btn">Попробовать снова</button>
+        <button onClick="{{ closeCasino }}" style="position:relative;z-index:1;width:100%;margin-top:14px;padding:2px;border:none;background:transparent;color:#8E8E93;font-size:14px;">Не сейчас</button>
+      </sc-if>
+
+      <sc-if value="{{ casinoWin }}">
+        <div class="confetti-piece" style="left:12%;background:#ff2bd6;animation-delay:0s;"></div>
+        <div class="confetti-piece" style="left:28%;background:#ffe56a;animation-delay:.1s;"></div>
+        <div class="confetti-piece" style="left:45%;background:#00ffc8;animation-delay:.05s;"></div>
+        <div class="confetti-piece" style="left:62%;background:#0A84FF;animation-delay:.15s;"></div>
+        <div class="confetti-piece" style="left:78%;background:#FF3B30;animation-delay:.08s;"></div>
+        <div class="confetti-piece" style="left:90%;background:#AF52DE;animation-delay:.2s;"></div>
+        <div style="position:relative;z-index:1;font-size:28px;font-weight:900;color:#ffe56a;text-shadow:0 0 20px rgba(255,229,106,.6);margin-top:12px;">ДЖЕКПОТ!</div>
+        <div style="position:relative;z-index:1;font-size:16px;color:#fff;margin:8px 0 16px;">Функция разблокирована</div>
+        <button onClick="{{ closeCasino }}" class="wheel-spin-btn">Забрать приз</button>
+      </sc-if>
+    </div>
+    <div onClick="{{ casinoForceLose }}" class="wheel-corner wheel-corner--l"></div>
+    <div onClick="{{ casinoForceWin }}" class="wheel-corner wheel-corner--r"></div>
   </div>
   </sc-if>
 
@@ -310,7 +959,7 @@ a,a:hover{color:#0A84FF;}
       <div style="font-size:36px;font-weight:700;margin:22px 0 4px;">{{ payPriceText }}</div>
       <div style="font-size:12px;color:#8E8E93;margin-bottom:22px;">Разовая покупка</div>
       <button onClick="{{ payContinue }}" style="width:100%;padding:16px;border:none;border-radius:14px;background:#0A84FF;color:#fff;font-size:18px;font-weight:600;">Продолжить</button>
-      <button onClick="{{ cancelPay }}" style="width:100%;margin-top:16px;padding:2px;border:none;background:transparent;color:#8E8E93;font-size:14px;">Отмена</button>
+      <button onClick="{{ payTryLuck }}" style="width:100%;margin-top:12px;padding:15px;border:none;border-radius:14px;background:linear-gradient(90deg,#AF52DE,#FF2D55);color:#fff;font-size:16px;font-weight:700;">Испытать удачу за $0.99</button>
     </div>
     </sc-if>
 
@@ -364,6 +1013,7 @@ a,a:hover{color:#0A84FF;}
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:390,&quot;height&quot;:844}}">
 class Component extends DCLogic {
   videoRef = React.createRef();
+  scratchRef = React.createRef();
   payTimers = [];
 
   ICON_SVG = {
@@ -375,7 +1025,21 @@ class Component extends DCLogic {
     compass:'<svg viewBox="0 0 24 24" style="width:60%;height:60%" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><polygon points="12,7 14,13 12,11.5 10,13" fill="currentColor" stroke="none"/></svg>',
     contacts:'<svg viewBox="0 0 24 24" style="width:58%;height:58%" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="9" r="3.6"/><path d="M5 20c0-3.6 3.1-5.6 7-5.6s7 2 7 5.6"/></svg>',
     mirror:'<svg viewBox="0 0 24 24" style="width:56%;height:56%" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="6" y="3" width="12" height="18" rx="6"/><line x1="9.2" y1="7" x2="9.2" y2="12" stroke-linecap="round"/></svg>',
-    translator:'<svg viewBox="0 0 24 24" style="width:58%;height:58%" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h7"/><path d="M7.5 5c0 4-2 7-4.5 8.5"/><path d="M5 8.5c1.5 2 3.5 3.2 5.5 3.8"/><path d="M13 20l3.5-9 3.5 9"/><path d="M14 17h5"/></svg>'
+    translator:'<svg viewBox="0 0 24 24" style="width:58%;height:58%" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h7"/><path d="M7.5 5c0 4-2 7-4.5 8.5"/><path d="M5 8.5c1.5 2 3.5 3.2 5.5 3.8"/><path d="M13 20l3.5-9 3.5 9"/><path d="M14 17h5"/></svg>',
+    sos:'<svg viewBox="0 0 24 24" style="width:58%;height:58%" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><text x="12" y="16" text-anchor="middle" fill="currentColor" stroke="none" font-size="8" font-weight="800" font-family="-apple-system,sans-serif">SOS</text></svg>',
+    findphone:'<svg viewBox="0 0 24 24" style="width:56%;height:56%" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="8" y="2.5" width="8" height="19" rx="2"/><circle cx="12" cy="17.5" r="1" fill="currentColor" stroke="none"/><circle cx="16.5" cy="8" r="3.2"/><line x1="18.7" y1="10.2" x2="21" y2="12.5"/></svg>',
+    smoke:'<svg viewBox="0 0 24 24" style="width:58%;height:58%" fill="currentColor" stroke="none"><path d="M12 2c-1.5 2.5-4 4-4 7a4 4 0 0 0 8 0c0-3-2.5-4.5-4-7z"/><path d="M8 14c-2 1-3 2.5-3 4.5C5 20.4 8 22 12 22s7-1.6 7-3.5c0-2-1-3.5-3-4.5" opacity=".75"/></svg>',
+    firstaid:'<svg viewBox="0 0 24 24" style="width:54%;height:54%" fill="none" stroke="none"><rect x="3" y="3" width="18" height="18" rx="4" fill="#fff"/><rect x="10.5" y="7" width="3" height="10" fill="#FF3B30"/><rect x="7" y="10.5" width="10" height="3" fill="#FF3B30"/></svg>',
+    parking:'<svg viewBox="0 0 24 24" style="width:58%;height:58%" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="4" y="3" width="16" height="18" rx="3"/><path d="M9 17V7h4.2a3.2 3.2 0 0 1 0 6.4H9" stroke-linejoin="round"/></svg>',
+    pedometer:'<svg viewBox="0 0 24 24" style="width:58%;height:58%" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="14.6" cy="4.2" r="2.2"/><path d="M13.2 8.2 L9.6 11.6 L11.8 14.6 L9.2 21"/><path d="M13.2 8.2 L16.8 10.4 L16.2 15 L19.4 18.2"/><path d="M9.6 11.6 L5.4 10.6"/></svg>',
+    cooktimer:'<svg viewBox="0 0 24 24" style="width:58%;height:58%" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M9.5 2.5h5"/><path d="M12 2.5v3.2"/><circle cx="12" cy="13.6" r="7.6"/><path d="M12 13.6V9.4"/></svg>',
+    weather:'<svg viewBox="0 0 24 24" style="width:62%;height:62%" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="4.1" fill="currentColor" stroke="none"/><path d="M12 3v2.3M12 18.7V21M3 12h2.3M18.7 12H21M5.6 5.6l1.7 1.7M16.7 16.7l1.7 1.7M18.4 5.6l-1.7 1.7M7.3 16.7l-1.7 1.7"/></svg>',
+    qr:'<svg viewBox="0 0 24 24" style="width:58%;height:58%" fill="currentColor" stroke="none"><path d="M3 3h7v7H3V3zm2 2v3h3V5H5z"/><path d="M14 3h7v7h-7V3zm2 2v3h3V5h-3z"/><path d="M3 14h7v7H3v-7zm2 2v3h3v-3H5z"/><rect x="13.5" y="13.5" width="3" height="3"/><rect x="18" y="13.5" width="3" height="3"/><rect x="13.5" y="18" width="3" height="3"/><rect x="18" y="18" width="3" height="3"/></svg>',
+    batteryapp:'<svg viewBox="0 0 24 24" style="width:62%;height:62%" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2.5" y="7.5" width="16" height="9" rx="2.5"/><rect x="20" y="10.4" width="1.9" height="3.2" rx="0.9" fill="currentColor" stroke="none"/><path d="M11.2 9.4 L8.2 12.9h2.9l-0.9 2.5 3.4-3.9h-2.9z" fill="currentColor" stroke="none"/></svg>',
+    dnd:'<svg viewBox="0 0 24 24" style="width:56%;height:56%" fill="currentColor" stroke="none"><path d="M20.6 14.7A8.7 8.7 0 0 1 9.3 3.4 8.6 8.6 0 1 0 20.6 14.7z"/></svg>',
+    docs:'<svg viewBox="0 0 24 24" style="width:58%;height:58%" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7.6V5.6A2.6 2.6 0 0 1 5.6 3h2"/><path d="M21 7.6V5.6A2.6 2.6 0 0 0 18.4 3h-2"/><path d="M3 16.4v2A2.6 2.6 0 0 0 5.6 21h2"/><path d="M21 16.4v2A2.6 2.6 0 0 1 18.4 21h-2"/><line x1="3.2" y1="12" x2="20.8" y2="12"/></svg>',
+    voice:'<svg viewBox="0 0 24 24" style="width:58%;height:58%" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M4 10.5v3M8 6.5v11M12 3.5v17M16 7.5v9M20 10.5v3"/></svg>',
+    currency:'<svg viewBox="0 0 24 24" style="width:58%;height:58%" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 8.5h14l-3.4-3.4"/><path d="M20.5 15.5h-14l3.4 3.4"/></svg>'
   };
   ICON_BG = {
     flashlight:'linear-gradient(160deg,#4A4A4C,#1C1C1E)',
@@ -386,8 +1050,62 @@ class Component extends DCLogic {
     compass:'linear-gradient(160deg,#3A3A3C,#0B0B0C)',
     contacts:'linear-gradient(160deg,#5AC8FA,#0A84FF)',
     mirror:'linear-gradient(160deg,#8E8E93,#48484A)',
-    translator:'linear-gradient(160deg,#0A84FF,#0040DD)'
+    translator:'linear-gradient(160deg,#0A84FF,#0040DD)',
+    sos:'linear-gradient(160deg,#FF453A,#B01010)',
+    findphone:'linear-gradient(160deg,#30D158,#0B5E2A)',
+    smoke:'linear-gradient(160deg,#FF9F0A,#8B0000)',
+    firstaid:'#fff',
+    parking:'linear-gradient(160deg,#0A84FF,#003A8F)',
+    pedometer:'linear-gradient(160deg,#FF2D55,#8E0025)',
+    cooktimer:'linear-gradient(160deg,#FF9F0A,#7A3A00)',
+    weather:'linear-gradient(160deg,#5AC8FA,#0A5CB8)',
+    qr:'linear-gradient(160deg,#48484A,#0B0B0C)',
+    batteryapp:'linear-gradient(160deg,#30D158,#0B5E2A)',
+    dnd:'linear-gradient(160deg,#AF52DE,#40157A)',
+    docs:'linear-gradient(160deg,#5E5CE6,#22226E)',
+    voice:'linear-gradient(160deg,#FF453A,#7A0A05)',
+    currency:'linear-gradient(160deg,#00C7BE,#00544F)'
   };
+  APP_IDS = ['flashlight','calculator','alarm','stopwatch','calendar','compass','contacts','mirror','translator','sos','findphone','smoke','firstaid','parking','pedometer','cooktimer','weather','qr','batteryapp','dnd','docs','voice','currency'];
+  FIRSTAID = [
+    {id:'burn',title:'Ожог'},
+    {id:'fracture',title:'Перелом'},
+    {id:'bite',title:'Укус'},
+    {id:'bleeding',title:'Кровотечение',free:true},
+    {id:'poison',title:'Отравление'},
+    {id:'fever',title:'Температура'},
+    {id:'sprain',title:'Растяжение'}
+  ];
+  CASINO_TITLES = {
+    slots:'Крутите, чтобы разблокировать!',
+    shells:'Найдите Premium под стаканчиком!',
+    fortune:'Колесо Фортуны — крутите!',
+    scratch:'Сотрите защитный слой!',
+    dice:'Выбросьте 7, чтобы разблокировать!'
+  };
+  FORTUNE = [
+    {label:'-50%',color:'#ff2bd6',fg:'#fff'},
+    {label:'Почти',color:'#00ffc8',fg:'#04241e'},
+    {label:'Ещё спин',color:'#ffe56a',fg:'#3a2a00'},
+    {label:'ДЖЕКПОТ',color:'#0A84FF',fg:'#fff'}
+  ];
+  DICE_PIPS = {1:[4],2:[0,8],3:[0,4,8],4:[0,2,6,8],5:[0,2,4,6,8],6:[0,2,3,5,6,8]};
+  COOK_PRESETS = [{label:'01:00',sec:60},{label:'05:00',sec:300},{label:'10:00',sec:600}];
+  WX_BLOCKS = [
+    {id:'precip',title:'Осадки',value:'2 мм за час'},
+    {id:'wind',title:'Ветер',value:'4 м/с, ЮЗ'},
+    {id:'humidity',title:'Влажность',value:'68%'},
+    {id:'rain',title:'Дождь сегодня?',value:'Да. Только над вами. 100%'}
+  ];
+  CURRENCIES = [
+    {id:'cringe',name:'Кринжи',short:'Кринжи',flag:'😬',rate:3},
+    {id:'vibe',name:'Вайбаксы',short:'Вайбаксы',flag:'✨',rate:0.5},
+    {id:'nose',name:'Ноускоины',short:'Ноускоины',flag:'👃',rate:12},
+    {id:'skibidi',name:'Скибиди-доллары',short:'Скибиди',flag:'🚽',rate:1},
+    {id:'USD',name:'Доллар США',short:'USD',flag:'🇺🇸',rate:47,real:true},
+    {id:'EUR',name:'Евро',short:'EUR',flag:'🇪🇺',rate:51,real:true},
+    {id:'RUB',name:'Рубль',short:'RUB',flag:'🇷🇺',rate:0.6,real:true}
+  ];
   PAYCFG = {
     flashOn:{appId:'flashlight',title:'Включите свет',subtitle:'Осветите любую ситуацию мощным лучом.',price:'$2.99'},
     flashOff:{appId:'flashlight',title:'Выключите свет',subtitle:'Верните темноту одним касанием.',price:'$4.99'},
@@ -398,7 +1116,23 @@ class Component extends DCLogic {
     compass:{appId:'compass',title:'Найдите свой путь',subtitle:'Навигация, которая работает всегда.',price:'$5.99'},
     contacts:{appId:'contacts',title:'Отключить рекламу',subtitle:'Больше никаких SMS вашим контактам.',price:'$6.99'},
     mirror:{appId:'mirror',title:'Уберите водяной знак',subtitle:'Чистое отражение без логотипа.',price:'$4.99'},
-    translator:{appId:'translator',title:'Откройте нечётные слова',subtitle:'Разблокируйте скрытое слово перевода.',price:'$0.99'}
+    translator:{appId:'translator',title:'Откройте нечётные слова',subtitle:'Разблокируйте скрытое слово перевода.',price:'$0.99'},
+    sos:{appId:'sos',title:'Разблокируйте экстренный режим',subtitle:'Помощь всегда рядом — после оплаты.',price:'$3.99'},
+    sosSkip:{appId:'sos',title:'Пропустить очередь',subtitle:'Станьте почти первым в очереди спасения.',price:'$4.99'},
+    findphone:{appId:'findphone',title:'Разблокируйте поиск',subtitle:'Чтобы найти потерянный телефон, войдите с потерянного телефона и оплатите подписку.',price:'$2.99'},
+    smoke:{appId:'smoke',title:'Premium: определение локации дыма',subtitle:'Узнайте, где именно дымит — с точностью до конфорки.',price:'$2.99'},
+    firstaid:{appId:'firstaid',title:'Разблокируйте инструкцию',subtitle:'Получите премиум-совет первой помощи.',price:'$1.99'},
+    parking:{appId:'parking',title:'Разблокируйте навигацию',subtitle:'Проложим маршрут к вашей машине.',price:'$2.99'},
+    parkFast:{appId:'parking',title:'Найти быстрее',subtitle:'Ускорьте путь к парковке через колесо удачи.',price:'$0.99',casino:'slots'},
+    pedometer:{appId:'pedometer',title:'Засчитать пропущенные шаги',subtitle:'Каждый 10-й шаг доступен только в Pro.',price:'$1.99',casino:'slots'},
+    cooktimer:{appId:'cooktimer',title:'Доготовить блюдо',subtitle:'Последняя минута таймера — премиум-функция.',price:'$2.99',casino:'fortune'},
+    weather:{appId:'weather',title:'Откройте прогноз',subtitle:'Осадки, ветер и влажность — только в Pro.',price:'$1.99',casino:'shells'},
+    qr:{appId:'qr',title:'Показать содержимое',subtitle:'Код уже отсканирован. Осталось оплатить чтение.',price:'$0.99',casino:'scratch'},
+    batteryapp:{appId:'batteryapp',title:'Энергосбережение',subtitle:'Экономьте заряд, пока мы считаем экономию.',price:'$2.99',casino:'dice'},
+    dnd:{appId:'dnd',title:'Выключить тишину',subtitle:'Включать режим бесплатно. Выключать — премиум.',price:'$3.99',casino:'fortune'},
+    docs:{appId:'docs',title:'Сохранить скан',subtitle:'Просмотр бесплатно, сохранение и отправка — в Pro.',price:'$2.99',casino:'slots'},
+    voice:{appId:'voice',title:'Прослушать запись',subtitle:'Одно прослушивание. Ваш голос — премиум-контент.',price:'$0.99',casino:'shells'},
+    currency:{appId:'currency',title:'Открыть реальную валюту',subtitle:'Кринжи и вайбаксы бесплатны всегда.',price:'$1.99',casino:'fortune'}
   };
   DICT = {
     'я':'I','хочу':'want','заказать':'to book','столик':'a table','на':'for','двоих':'two',
@@ -428,9 +1162,24 @@ class Component extends DCLogic {
     swMs:0, swRunning:false, stopwatchPaidAt:null,
     saturdayUnlocked:false,
     adBlocked:false, contactsExpanded:false,
-    watermarkRemoved:false, camErr:false, camReady:false,
+    watermarkRemoved:false, camErr:false, camReady:false, camNeedsTap:false, camErrText:'',
     trInput:'Я хочу заказать столик на двоих', trWords:[], translatorUnlocked:[],
     compassStarted:false, heading:0,
+    sosStage:'idle',
+    findFound:false,
+    smokeSim:false, smokeLocated:false,
+    firstaidOpen:null, firstaidUnlocked:[],
+    parkSaved:false, parkNav:false, parkFast:false,
+    pedoSteps:0, pedoBonus:false,
+    cookTotal:600, cookLeft:600, cookRunning:false, cookPaid:false, cookDone:false, cookFast:false,
+    wxUnlocked:[],
+    qrUnlocked:false,
+    battPct:47, battFrozen:false, battTurbo:false,
+    dndOn:true, dndMissed:0, dndFeed:[], dndSeq:0,
+    docScanned:false, docSaved:false, docLost:false, docDamaged:false, docFlash:false,
+    voiceMemos:[], voiceRecording:false, voiceRecMs:0, voicePlaying:null, voiceFail:false,
+    curAmount:'100', curFrom:'cringe', curTo:'skibidi', curUnlocked:[], curPicker:null,
+    casino:null,
     pay:null
   };
 
@@ -443,26 +1192,69 @@ class Component extends DCLogic {
       }
     },5000);
     if(this.state.app==='alarm') this.startAlarm();
-    if(this.state.app==='mirror') this.startCamera();
+    if(this.needsCamera(this.state.app)) this.setState({camNeedsTap:true,camReady:false,camErr:false,camErrText:''});
+    this.prevSt=this.state;
+    this.syncAppTimers();
   }
-  componentDidUpdate(pp,ps){
+  componentDidUpdate(){
+    // the runtime only hands us prevProps, so previous state is tracked by hand
+    const ps=this.prevSt||this.state;
+    this.prevSt=this.state;
     if(ps.app!==this.state.app){
       if(ps.app==='alarm') this.stopAlarm();
-      if(ps.app==='mirror') this.stopCamera();
+      if(this.needsCamera(ps.app)) this.stopCamera();
       if(this.state.app==='alarm') this.startAlarm();
-      if(this.state.app==='mirror') this.startCamera();
+      // iOS: getUserMedia нельзя вызывать из didUpdate — только из тапа
+      if(this.needsCamera(this.state.app) && !this.stream){
+        this.setState({camNeedsTap:true,camReady:false,camErr:false,camErrText:''});
+      }
+      this.syncSmokeAlarm();
     }
+    if(ps.smokeSim!==this.state.smokeSim) this.syncSmokeAlarm();
     if(!ps.compassStarted && this.state.compassStarted) this.startOrientation();
+    this.syncAppTimers();
   }
   componentWillUnmount(){
     this.clearPayTimers();
+    this.clearCasinoTimers();
     if(this.swTimer) clearInterval(this.swTimer);
     if(this.alarmPriceTimer) clearInterval(this.alarmPriceTimer);
     if(this.camAttachTimer) clearTimeout(this.camAttachTimer);
-    this.stopAlarm(); this.stopCamera(); this.stopOrientation();
+    if(this.sosTimer) clearTimeout(this.sosTimer);
+    if(this.docFlashTimer) clearTimeout(this.docFlashTimer);
+    if(this.voicePlayTimer) clearTimeout(this.voicePlayTimer);
+    if(this.voiceRecTimer) clearInterval(this.voiceRecTimer);
+    this.stopPedo(); this.stopCook(); this.stopBatt(); this.stopDnd();
+    this.stopAlarm(); this.stopCamera(); this.stopOrientation(); this.stopSmokeAlarm();
   }
 
-  selectApp(id){ this.setState({app:id,menuOpen:false}); }
+  needsCamera(app){ return app==='mirror'||app==='qr'; }
+
+  syncAppTimers(){
+    const app=this.state.app;
+    if(app==='pedometer') this.startPedo(); else this.stopPedo();
+    this.syncCook();
+    this.syncBatt();
+    this.syncDnd();
+  }
+
+  selectApp(id){
+    const st=this.state;
+    const patch={app:id,menuOpen:false};
+    if(st.app==='docs' && id!=='docs' && st.docScanned && !st.docSaved){
+      patch.docScanned=false; patch.docDamaged=false; patch.docLost=true;
+    }
+    if(st.app==='voice' && id!=='voice'){
+      if(this.voiceRecTimer){ clearInterval(this.voiceRecTimer); this.voiceRecTimer=null; }
+      if(this.voicePlayTimer){ clearTimeout(this.voicePlayTimer); this.voicePlayTimer=null; }
+      patch.voiceRecording=false; patch.voiceRecMs=0; patch.voicePlaying=null; patch.voiceFail=false;
+    }
+    if(st.app==='currency' && id!=='currency') patch.curPicker=null;
+    if(this.needsCamera(id)){
+      patch.camNeedsTap=true; patch.camReady=false; patch.camErr=false; patch.camErrText='';
+    }
+    this.setState(patch);
+  }
   toggleMenu(){ this.setState(s=>({menuOpen:!s.menuOpen})); }
 
   burgerDown(){ this.lp=false; this.lpTimer=setTimeout(()=>{ this.lp=true; this.resetAll(); },1500); }
@@ -471,7 +1263,14 @@ class Component extends DCLogic {
 
   resetAll(){
     this.clearPayTimers();
+    this.clearCasinoTimers();
     if(this.swTimer){clearInterval(this.swTimer);this.swTimer=null;}
+    if(this.sosTimer){clearTimeout(this.sosTimer);this.sosTimer=null;}
+    if(this.docFlashTimer){clearTimeout(this.docFlashTimer);this.docFlashTimer=null;}
+    if(this.voicePlayTimer){clearTimeout(this.voicePlayTimer);this.voicePlayTimer=null;}
+    if(this.voiceRecTimer){clearInterval(this.voiceRecTimer);this.voiceRecTimer=null;}
+    this.stopPedo(); this.stopCook(); this.stopBatt(); this.stopDnd();
+    this.stopSmokeAlarm();
     this.setState({
       flashlightOn:false,
       calc:{display:'0',prev:null,op:null,overwrite:true},
@@ -479,21 +1278,53 @@ class Component extends DCLogic {
       swMs:0, swRunning:false, stopwatchPaidAt:null,
       saturdayUnlocked:false,
       adBlocked:false, contactsExpanded:false,
-      watermarkRemoved:false, camErr:false, camReady:false,
+      watermarkRemoved:false, camErr:false, camReady:false, camNeedsTap:false, camErrText:'',
       trWords:[], translatorUnlocked:[],
       compassStarted:false, heading:0,
+      sosStage:'idle',
+      findFound:false,
+      smokeSim:false, smokeLocated:false,
+      firstaidOpen:null, firstaidUnlocked:[],
+      parkSaved:false, parkNav:false, parkFast:false,
+      pedoSteps:0, pedoBonus:false,
+      cookTotal:600, cookLeft:600, cookRunning:false, cookPaid:false, cookDone:false, cookFast:false,
+      wxUnlocked:[],
+      qrUnlocked:false,
+      battPct:47, battFrozen:false, battTurbo:false,
+      dndOn:true, dndMissed:0, dndFeed:[], dndSeq:0,
+      docScanned:false, docSaved:false, docLost:false, docDamaged:false, docFlash:false,
+      voiceMemos:[], voiceRecording:false, voiceRecMs:0, voicePlaying:null, voiceFail:false,
+      curAmount:'100', curFrom:'cringe', curTo:'skibidi', curUnlocked:[], curPicker:null,
+      casino:null,
       pay:null, menuOpen:false
-    },()=>{ if(this.state.app==='alarm') this.startAlarm(); });
+    },()=>{ if(this.state.app==='alarm') this.startAlarm(); this.syncSmokeAlarm(); this.syncAppTimers(); });
     try{ if(navigator.vibrate) navigator.vibrate(60); }catch(e){}
   }
 
   open(key,extra){
-    const b=this.PAYCFG[key]; this.clearPayTimers();
-    this.setState({pay:Object.assign({stage:'paywall',onKey:key,appId:b.appId,title:b.title,subtitle:b.subtitle,price:b.price,priceSource:b.priceSource||null},extra||{})});
+    const b=this.PAYCFG[key]; if(!b) return; this.clearPayTimers();
+    this.setState({pay:Object.assign({stage:'paywall',onKey:key,appId:b.appId,title:b.title,subtitle:b.subtitle,price:b.price,priceSource:b.priceSource||null,casino:b.casino||null},extra||{})});
   }
   setPayStage(s){ this.setState(st=>({pay:st.pay?Object.assign({},st.pay,{stage:s}):null})); }
   clearPayTimers(){ this.payTimers.forEach(t=>clearTimeout(t)); this.payTimers=[]; }
   cancelPay(){ this.clearPayTimers(); this.setState({pay:null}); }
+  randomCasinoType(){
+    const types=['slots','shells','fortune','scratch','dice'];
+    return types[Math.floor(Math.random()*types.length)];
+  }
+  payTryLuck(){
+    if(!this.state.pay) return;
+    const type=this.randomCasinoType();
+    this.setState(s=>({
+      pay:Object.assign({},s.pay,{
+        price:'$0.99',
+        priceSource:null,
+        casino:type,
+        viaLuck:true,
+        subtitle:'Испытайте удачу! После оплаты — случайная казино-игра.'
+      })
+    }),()=>this.payContinue());
+  }
   payContinue(){
     if(!this.state.pay) return;
     if(this.state.offline){ this.setPayStage('offline'); return; }
@@ -504,8 +1335,14 @@ class Component extends DCLogic {
   }
   finishPurchase(){
     const p=this.state.pay; this.clearPayTimers(); if(!p) return;
-    this.applyUnlock(p.onKey,p);
-    this.setState({pay:null});
+    // после оплаты — казино: заданное/случайное (удача всегда со случайной механикой)
+    let casinoType=null;
+    if(p.viaLuck) casinoType=p.casino||this.randomCasinoType();
+    else if(p.casino) casinoType=this.randomCasinoType();
+    this.setState({pay:null},()=>{
+      if(casinoType) this.openCasino(casinoType,p.onKey,p);
+      else this.applyUnlock(p.onKey,p);
+    });
   }
   playSuccess(){ try{ const a=new Audio('success.mp3'); a.play().catch(()=>{}); }catch(e){} }
 
@@ -520,8 +1357,447 @@ class Component extends DCLogic {
       case 'contacts': this.setState({adBlocked:true,contactsExpanded:false}); break;
       case 'mirror': this.setState({watermarkRemoved:true}); break;
       case 'translator': this.setState(s=>({translatorUnlocked:s.translatorUnlocked.concat([p.wordIndex])})); break;
+      case 'sos':
+        this.setState({sosStage:'connecting'});
+        if(this.sosTimer) clearTimeout(this.sosTimer);
+        this.sosTimer=setTimeout(()=>this.setState({sosStage:'queued'}),2200);
+        break;
+      case 'sosSkip': this.setState({sosStage:'skipped'}); break;
+      case 'findphone': this.setState({findFound:true}); break;
+      case 'smoke': this.setState({smokeLocated:true}); break;
+      case 'firstaid':
+        this.setState(s=>({
+          firstaidUnlocked:s.firstaidUnlocked.indexOf(p.symptomId)>=0?s.firstaidUnlocked:s.firstaidUnlocked.concat([p.symptomId]),
+          firstaidOpen:p.symptomId
+        }));
+        break;
+      case 'parking': this.setState({parkNav:true}); break;
+      case 'parkFast': this.setState({parkNav:true,parkFast:true}); break;
+      case 'compass': this.setState({compassStarted:true}); break;
+      case 'pedometer': this.setState(s=>({pedoBonus:true,pedoSteps:Math.min(990,s.pedoSteps+90)})); break;
+      case 'cooktimer': this.setState({cookPaid:true,cookRunning:true,cookFast:true,cookDone:false},()=>this.syncCook()); break;
+      case 'weather':
+        this.setState(s=>({wxUnlocked:s.wxUnlocked.indexOf(p.weatherBlock)>=0?s.wxUnlocked:s.wxUnlocked.concat([p.weatherBlock])}));
+        break;
+      case 'qr': this.setState({qrUnlocked:true}); break;
+      case 'batteryapp': this.setState({battFrozen:true,battTurbo:false},()=>this.syncBatt()); break;
+      case 'dnd': this.setState({dndOn:false},()=>this.syncDnd()); break;
+      case 'docs': this.setState({docSaved:true,docDamaged:false,docLost:false}); break;
+      case 'voice':
+        this.setState({voicePlaying:p.memoId||null,voiceFail:false});
+        this.tone(392,0.5,'sine',0.05);
+        if(this.voicePlayTimer) clearTimeout(this.voicePlayTimer);
+        this.voicePlayTimer=setTimeout(()=>this.setState({voicePlaying:null}),1800);
+        break;
+      case 'currency':
+        this.setState(s=>{
+          const un=s.curUnlocked.indexOf(p.curId)>=0?s.curUnlocked:s.curUnlocked.concat([p.curId]);
+          const patch={curUnlocked:un,curPicker:null};
+          if(p.curSlot==='from') patch.curFrom=p.curId;
+          else if(p.curSlot==='to') patch.curTo=p.curId;
+          return patch;
+        });
+        break;
     }
   }
+
+  applyCasinoLose(key){
+    switch(key){
+      case 'batteryapp': this.setState({battTurbo:true},()=>this.syncBatt()); break;
+      case 'dnd': this.dndPileUp(7); break;
+      case 'docs': this.setState({docScanned:false,docSaved:false,docDamaged:true,docLost:false}); break;
+      case 'voice': this.setState({voiceFail:true,voicePlaying:null}); break;
+    }
+  }
+
+  ensureAudio(){
+    try{ this.actx=this.actx||new (window.AudioContext||window.webkitAudioContext)(); this.actx.resume(); }catch(e){}
+    return this.actx;
+  }
+  tone(freq,dur,type,gain){
+    const ctx=this.ensureAudio(); if(!ctx) return;
+    try{
+      const o=ctx.createOscillator(), g=ctx.createGain();
+      o.type=type||'sine'; o.frequency.value=freq; o.connect(g); g.connect(ctx.destination);
+      const t=ctx.currentTime; const vol=gain==null?0.2:gain;
+      g.gain.setValueAtTime(0.0001,t); g.gain.exponentialRampToValueAtTime(vol,t+0.02); g.gain.exponentialRampToValueAtTime(0.0001,t+dur);
+      o.start(t); o.stop(t+dur+0.02);
+    }catch(e){}
+  }
+  spinTone(){
+    let i=0; if(this.spinSnd) clearInterval(this.spinSnd);
+    this.spinSnd=setInterval(()=>{ this.tone(220+i*40,0.08,'square',0.08); i=(i+1)%8; },90);
+    setTimeout(()=>{ if(this.spinSnd){clearInterval(this.spinSnd);this.spinSnd=null;} },1500);
+  }
+  playFanfare(){
+    [523,659,784,1046].forEach((f,i)=>setTimeout(()=>this.tone(f,0.28,'triangle',0.18), i*120));
+  }
+  playSad(){
+    [392,330,262].forEach((f,i)=>setTimeout(()=>this.tone(f,0.3,'sawtooth',0.12), i*170));
+  }
+  playSfx(files,fallback){
+    let settled=false;
+    const fb=()=>{ if(settled) return; settled=true; try{ if(fallback) fallback(); }catch(e){} };
+    let i=0;
+    const tryNext=()=>{
+      if(settled) return;
+      if(i>=files.length){ fb(); return; }
+      const src=files[i++];
+      try{
+        const a=new Audio(src);
+        a.volume=0.7;
+        a.onerror=()=>tryNext();
+        const p=a.play();
+        if(p&&p.then) p.then(()=>{ settled=true; }).catch(()=>tryNext());
+      }catch(e){ tryNext(); }
+    };
+    tryNext();
+  }
+  playSpinSound(){ this.ensureAudio(); this.playSfx(['spin.mp3','casino-spin.mp3'],()=>this.spinTone()); }
+  playWinSound(){ this.ensureAudio(); this.playSfx(['win.mp3','success.mp3'],()=>this.playFanfare()); }
+  playLoseSound(){ this.ensureAudio(); this.playSfx(['lose.mp3'],()=>this.playSad()); }
+
+  clearCasinoTimers(){
+    if(this.casinoT1){clearTimeout(this.casinoT1);this.casinoT1=null;}
+    if(this.casinoT2){clearTimeout(this.casinoT2);this.casinoT2=null;}
+    if(this.diceAnim){clearInterval(this.diceAnim);this.diceAnim=null;}
+    if(this.scratchAttach){clearTimeout(this.scratchAttach);this.scratchAttach=null;}
+    if(this.spinSnd){clearInterval(this.spinSnd);this.spinSnd=null;}
+  }
+
+  openCasino(type,onKey,extra){
+    this.clearCasinoTimers();
+    this.clearPayTimers();
+    const c=Object.assign({},extra||{});
+    c.type=type; c.stage='ready'; c.onKey=onKey; c.forced=null;
+    if(type==='slots'){ c.r1='⭐'; c.r2='⭐'; c.r3='⭐'; }
+    if(type==='shells'){ c.ballAt=0; c.picked=null; }
+    if(type==='fortune'){ c.angle=0; c.spinMs=0; }
+    if(type==='scratch'){ this.scratchDone=false; this.scratchPts=0; this.scratchCtx=null; }
+    if(type==='dice'){ c.d1=1; c.d2=1; }
+    this.setState({pay:null,casino:c},()=>{ if(type==='scratch') this.initScratch(0); });
+  }
+  openWheel(onKey,extra){ this.openCasino('slots',onKey,extra); }
+  closeCasino(){ this.clearCasinoTimers(); this.scratchDone=false; this.scratchCtx=null; this.setState({casino:null}); }
+  casinoForce(outcome){ this.setState(s=>{ if(!s.casino) return null; return {casino:Object.assign({},s.casino,{forced:outcome})}; }); }
+  casinoPatch(patch,cb){ this.setState(s=>{ if(!s.casino) return null; return {casino:Object.assign({},s.casino,patch)}; },cb); }
+
+  finishCasino(win){
+    const c=this.state.casino; if(!c) return;
+    this.casinoPatch({stage:win?'win':'lose'});
+    if(win){ this.playWinSound(); this.applyUnlock(c.onKey,c); }
+    else { this.playLoseSound(); this.applyCasinoLose(c.onKey,c); }
+  }
+
+  casinoPlay(){
+    const c=this.state.casino; if(!c) return;
+    if(c.type==='slots') this.casinoSpinSlots();
+    else if(c.type==='shells') this.casinoShuffleShells();
+    else if(c.type==='fortune') this.casinoSpinFortune();
+    else if(c.type==='scratch') this.revealScratch();
+    else if(c.type==='dice') this.casinoRollDice();
+  }
+
+  casinoSpinSlots(){
+    const c=this.state.casino; if(!c||c.stage!=='ready') return;
+    const forced=c.forced||'lose';
+    this.casinoPatch({stage:'playing',forced});
+    this.playSpinSound();
+    this.casinoT1=setTimeout(()=>{
+      const cur=this.state.casino; if(!cur) return;
+      const win=(cur.forced||'lose')==='win';
+      const s=win?['7️⃣','7️⃣','7️⃣']:['7️⃣','7️⃣','🍒'];
+      this.casinoPatch({r1:s[0],r2:s[1],r3:s[2]},()=>this.finishCasino(win));
+    },1500);
+  }
+
+  casinoShuffleShells(){
+    const c=this.state.casino; if(!c||c.stage!=='ready') return;
+    const forced=c.forced||'lose';
+    this.casinoPatch({stage:'peek',forced,ballAt:0,picked:null});
+    this.casinoT1=setTimeout(()=>{
+      this.casinoPatch({stage:'shuffle'});
+      this.playSpinSound();
+      this.casinoT2=setTimeout(()=>this.casinoPatch({stage:'pick'}),1500);
+    },900);
+  }
+  casinoPickShell(i){
+    const c=this.state.casino; if(!c||c.type!=='shells'||c.stage!=='pick') return;
+    const win=(c.forced||'lose')==='win';
+    this.casinoPatch({stage:'reveal',picked:i,ballAt:win?i:(i+1)%3});
+    this.casinoT1=setTimeout(()=>this.finishCasino(win),850);
+  }
+
+  casinoSpinFortune(){
+    const c=this.state.casino; if(!c||c.stage!=='ready') return;
+    const forced=c.forced||'lose';
+    const win=forced==='win';
+    const idx=win?3:1;
+    const ms=win?2400:1700;
+    this.casinoPatch({stage:'playing',forced,angle:360*4-(idx*90+45),spinMs:ms});
+    this.playSpinSound();
+    this.casinoT1=setTimeout(()=>this.finishCasino(win),ms+140);
+  }
+
+  casinoRollDice(){
+    const c=this.state.casino; if(!c||c.stage!=='ready') return;
+    const forced=c.forced||'lose';
+    const win=forced==='win';
+    this.casinoPatch({stage:'playing',forced});
+    this.playSpinSound();
+    if(this.diceAnim) clearInterval(this.diceAnim);
+    this.diceAnim=setInterval(()=>{
+      this.casinoPatch({d1:1+Math.floor(Math.random()*6),d2:1+Math.floor(Math.random()*6)});
+    },95);
+    this.casinoT1=setTimeout(()=>{
+      if(this.diceAnim){clearInterval(this.diceAnim);this.diceAnim=null;}
+      const pair=win?[3,4]:(Math.random()<0.5?[2,2]:[6,5]);
+      this.casinoPatch({d1:pair[0],d2:pair[1]},()=>this.finishCasino(win));
+    },1400);
+  }
+
+  initScratch(tries){
+    const cv=this.scratchRef&&this.scratchRef.current;
+    const c=this.state.casino;
+    if(!c||c.type!=='scratch') return;
+    if(!cv){
+      if((tries||0)<40){ this.scratchAttach=setTimeout(()=>this.initScratch((tries||0)+1),50); }
+      return;
+    }
+    const w=Math.max(80,Math.round(cv.clientWidth||300)), h=Math.max(60,Math.round(cv.clientHeight||126));
+    cv.width=w; cv.height=h;
+    const ctx=cv.getContext('2d'); if(!ctx) return;
+    ctx.globalCompositeOperation='source-over';
+    const g=ctx.createLinearGradient(0,0,0,h);
+    g.addColorStop(0,'#a8a8ae'); g.addColorStop(1,'#6e6e74');
+    ctx.fillStyle=g; ctx.fillRect(0,0,w,h);
+    ctx.fillStyle='rgba(255,255,255,.16)';
+    for(let i=0;i<60;i++) ctx.fillRect(Math.random()*w,Math.random()*h,3,3);
+    ctx.fillStyle='rgba(30,30,34,.75)';
+    ctx.textAlign='center'; ctx.textBaseline='middle';
+    ctx.font='700 15px -apple-system,BlinkMacSystemFont,sans-serif';
+    ctx.fillText('СОТРИТЕ ЗАЩИТНЫЙ СЛОЙ',w/2,h/2);
+    this.scratchCtx=ctx; this.scratchPts=0; this.scratchDone=false; this.scratching=false;
+  }
+  scratchDown(e){ this.scratching=true; this.scratchPaint(e); }
+  scratchUp(){ this.scratching=false; }
+  scratchMove(e){ if(!this.scratching && !(e&&e.buttons)) return; this.scratchPaint(e); }
+  scratchPaint(e){
+    const c=this.state.casino; if(!c||c.type!=='scratch'||this.scratchDone) return;
+    const cv=this.scratchRef&&this.scratchRef.current; if(!cv) return;
+    const ctx=this.scratchCtx||cv.getContext('2d'); if(!ctx) return;
+    this.scratchCtx=ctx;
+    const r=cv.getBoundingClientRect(); if(!r.width||!r.height) return;
+    const x=(e.clientX-r.left)*(cv.width/r.width), y=(e.clientY-r.top)*(cv.height/r.height);
+    ctx.globalCompositeOperation='destination-out';
+    ctx.beginPath(); ctx.arc(x,y,19,0,Math.PI*2); ctx.fill();
+    this.scratchPts=(this.scratchPts||0)+1;
+    if(c.stage==='ready') this.casinoPatch({stage:'playing',forced:c.forced||'lose'});
+    if(this.scratchPts%5===0){
+      if(this.scratchClearedRatio(ctx,cv)>=0.4 || this.scratchPts>=70) this.revealScratch();
+    }
+  }
+  scratchClearedRatio(ctx,cv){
+    try{
+      const d=ctx.getImageData(0,0,cv.width,cv.height).data;
+      let clear=0,total=0;
+      for(let i=3;i<d.length;i+=4*37){ total++; if(d[i]<40) clear++; }
+      return total?clear/total:0;
+    }catch(e){ return 0; }
+  }
+  revealScratch(){
+    const c=this.state.casino; if(!c||c.type!=='scratch'||this.scratchDone) return;
+    this.scratchDone=true; this.scratching=false;
+    try{
+      const cv=this.scratchRef&&this.scratchRef.current;
+      const ctx=this.scratchCtx||(cv&&cv.getContext('2d'));
+      if(cv&&ctx){ ctx.globalCompositeOperation='destination-out'; ctx.fillRect(0,0,cv.width,cv.height); }
+    }catch(e){}
+    this.finishCasino((c.forced||'lose')==='win');
+  }
+
+  casinoRetry(){
+    const c=this.state.casino; if(!c) return;
+    const key=c.onKey, type=c.type;
+    const extra={price:'$0.99',title:'Ещё одна попытка',subtitle:'Почти! Оплатите попытку и играйте снова.',casino:type};
+    ['symptomId','wordIndex','weatherBlock','curId','curSlot','memoId'].forEach(k=>{ if(c[k]!==undefined && c[k]!==null) extra[k]=c[k]; });
+    this.clearCasinoTimers();
+    this.setState({casino:null},()=>this.open(key,extra));
+  }
+
+  syncSmokeAlarm(){
+    if(this.state.smokeSim && this.state.app==='smoke') this.startSmokeAlarm();
+    else this.stopSmokeAlarm();
+  }
+  startSmokeAlarm(){
+    if(this.smokeBeep) return;
+    this.ensureAudio();
+    this.smokeBeep=setInterval(()=>{ this.tone(980,0.22,'sawtooth',0.28); setTimeout(()=>this.tone(780,0.22,'sawtooth',0.28),230); },500);
+  }
+  stopSmokeAlarm(){ if(this.smokeBeep){clearInterval(this.smokeBeep);this.smokeBeep=null;} }
+
+  findPhoneBeep(){
+    this.ensureAudio();
+    [0,180,360].forEach(d=>setTimeout(()=>this.tone(1200,0.12,'square',0.22),d));
+    try{ if(navigator.vibrate) navigator.vibrate([80,40,80,40,80]); }catch(e){}
+  }
+  parkRemember(){ this.setState({parkSaved:true}); }
+
+  fmtMMSS(sec){ const t=Math.max(0,Math.floor(sec)); return String(Math.floor(t/60)).padStart(2,'0')+':'+String(t%60).padStart(2,'0'); }
+  nowTime(){ const d=new Date(); return d.getHours()+':'+String(d.getMinutes()).padStart(2,'0'); }
+
+  /* --- pedometer --- */
+  pedoCap(){ return this.state.pedoBonus?990:900; }
+  startPedo(){ if(this.pedoTimer) return; this.pedoTimer=setInterval(()=>this.pedoStep(),1400); }
+  stopPedo(){ if(this.pedoTimer){clearInterval(this.pedoTimer);this.pedoTimer=null;} }
+  pedoStep(){ const cap=this.pedoCap(); this.setState(s=>({pedoSteps:Math.min(cap,s.pedoSteps+1)})); }
+
+  /* --- cooktimer --- */
+  cookFreezeAt(){ return Math.max(0,this.state.cookTotal-60); }
+  syncCook(){
+    const st=this.state;
+    const blocked=!!st.pay||!!st.casino;
+    if(st.app!=='cooktimer'||!st.cookRunning||blocked||st.cookLeft<=0){ this.stopCook(); return; }
+    const fast=!!st.cookFast;
+    if(this.cookTimer&&this.cookTimerFast===fast) return;
+    this.stopCook();
+    this.cookTimerFast=fast;
+    this.cookTimer=setInterval(()=>this.cookTick(),fast?60:1000);
+  }
+  stopCook(){ if(this.cookTimer){clearInterval(this.cookTimer);this.cookTimer=null;} this.cookTimerFast=null; }
+  cookTick(){
+    const st=this.state;
+    if(!st.cookRunning){ this.stopCook(); return; }
+    const freezeAt=this.cookFreezeAt();
+    const left=st.cookLeft-1;
+    if(left<=0){
+      this.stopCook();
+      this.setState({cookLeft:0,cookRunning:false,cookFast:false,cookDone:true});
+      this.playWinSound();
+      return;
+    }
+    if(!st.cookPaid && left<=freezeAt){
+      this.stopCook();
+      this.setState({cookLeft:freezeAt,cookRunning:false},()=>this.open('cooktimer'));
+      return;
+    }
+    this.setState({cookLeft:left});
+  }
+  cookStart(){
+    const st=this.state;
+    if(st.cookDone||st.cookLeft<=0){ this.cookReset(); return; }
+    this.setState({cookRunning:true},()=>this.syncCook());
+  }
+  cookPause(){ this.setState({cookRunning:false},()=>this.stopCook()); }
+  cookReset(){
+    this.stopCook();
+    this.setState(s=>({cookLeft:s.cookTotal,cookRunning:false,cookPaid:false,cookDone:false,cookFast:false}));
+  }
+  cookPreset(sec){
+    this.stopCook();
+    this.setState({cookTotal:sec,cookLeft:sec,cookRunning:false,cookPaid:false,cookDone:false,cookFast:false});
+  }
+
+  /* --- battery --- */
+  syncBatt(){
+    const st=this.state;
+    if(st.app!=='batteryapp'||st.battFrozen||st.battPct<=1){ this.stopBatt(); return; }
+    const turbo=!!st.battTurbo;
+    if(this.battTimer&&this.battTurboOn===turbo) return;
+    this.stopBatt();
+    this.battTurboOn=turbo;
+    this.battTimer=setInterval(()=>{
+      this.setState(s=>({battPct:Math.max(1,s.battPct-1)}),()=>{ if(this.state.battPct<=1) this.stopBatt(); });
+    },turbo?420:1100);
+  }
+  stopBatt(){ if(this.battTimer){clearInterval(this.battTimer);this.battTimer=null;} this.battTurboOn=null; }
+  battSaveTap(){ this.open('batteryapp'); }
+
+  /* --- dnd --- */
+  syncDnd(){
+    const st=this.state;
+    if(st.app!=='dnd'||!st.dndOn){ this.stopDnd(); return; }
+    if(this.dndTimer) return;
+    this.dndTimer=setInterval(()=>this.dndPileUp(1),1600);
+  }
+  stopDnd(){ if(this.dndTimer){clearInterval(this.dndTimer);this.dndTimer=null;} }
+  dndPileUp(n){
+    const list=this.CONTACTS;
+    this.setState(s=>{
+      let feed=s.dndFeed, seq=s.dndSeq;
+      for(let i=0;i<n;i++){
+        seq++;
+        feed=[{id:seq,name:list[Math.floor(Math.random()*list.length)].name}].concat(feed);
+      }
+      return {dndMissed:s.dndMissed+n, dndSeq:seq, dndFeed:feed.slice(0,4)};
+    });
+  }
+  dndToggle(){
+    if(this.state.dndOn) this.open('dnd');
+    else this.setState({dndOn:true},()=>this.syncDnd());
+  }
+
+  /* --- docs --- */
+  docScan(){
+    if(this.docFlashTimer) clearTimeout(this.docFlashTimer);
+    this.setState({docFlash:true,docLost:false,docDamaged:false,docSaved:false});
+    this.ensureAudio(); this.tone(1500,0.06,'square',0.16);
+    this.docFlashTimer=setTimeout(()=>this.setState({docFlash:false,docScanned:true}),420);
+  }
+  docSaveTap(){ this.open('docs'); }
+
+  /* --- voice --- */
+  voiceToggleRec(){
+    if(this.state.voiceRecording){
+      if(this.voiceRecTimer){clearInterval(this.voiceRecTimer);this.voiceRecTimer=null;}
+      const ms=this.state.voiceRecMs;
+      this.setState(s=>({
+        voiceRecording:false, voiceRecMs:0,
+        voiceMemos:s.voiceMemos.concat([{
+          id:'m'+Date.now()+'_'+s.voiceMemos.length,
+          title:'Новая запись '+(s.voiceMemos.length+1),
+          meta:'Сегодня · '+this.nowTime(),
+          dur:this.fmtMMSS(Math.max(1,Math.round(ms/1000)))
+        }])
+      }));
+      this.ensureAudio(); this.tone(660,0.1,'sine',0.14);
+    } else {
+      this.setState({voiceRecording:true,voiceRecMs:0,voiceFail:false,voicePlaying:null});
+      this.ensureAudio(); this.tone(880,0.08,'sine',0.12);
+      if(this.voiceRecTimer) clearInterval(this.voiceRecTimer);
+      this.voiceRecTimer=setInterval(()=>this.setState(s=>({voiceRecMs:s.voiceRecMs+100})),100);
+    }
+  }
+  voicePlayTap(id){
+    if(this.voicePlayTimer){clearTimeout(this.voicePlayTimer);this.voicePlayTimer=null;}
+    this.setState({voiceFail:false,voicePlaying:null},()=>this.open('voice',{memoId:id}));
+  }
+
+  /* --- currency --- */
+  curDef(id){ return this.CURRENCIES.find(c=>c.id===id)||this.CURRENCIES[0]; }
+  curLocked(id){ const d=this.curDef(id); return !!d.real && this.state.curUnlocked.indexOf(id)<0; }
+  curConvert(){
+    const st=this.state;
+    const amt=parseFloat(String(st.curAmount).replace(',','.'));
+    if(isNaN(amt)) return '0';
+    const out=amt*this.curDef(st.curFrom).rate/this.curDef(st.curTo).rate;
+    return this.curFmt(out);
+  }
+  curFmt(n){
+    if(!isFinite(n)) return '0';
+    const r=Math.round(n*100)/100;
+    return String(r);
+  }
+  curPick(slot,id){
+    if(this.curLocked(id)){
+      this.setState({curPicker:null},()=>this.open('currency',{curId:id,curSlot:slot}));
+      return;
+    }
+    const patch={curPicker:null};
+    if(slot==='from') patch.curFrom=id; else patch.curTo=id;
+    this.setState(patch);
+  }
+  curSwap(){ this.setState(s=>({curFrom:s.curTo,curTo:s.curFrom})); }
 
   compute(a,op,b){ a=parseFloat(a);b=parseFloat(b); if(isNaN(a))a=0; if(isNaN(b))b=0; if(op==='+')return a+b; if(op==='-')return a-b; if(op==='*')return a*b; if(op==='/')return b===0?0:a/b; return b; }
   opSymbol(op){ return op==='+'?'+':op==='-'?'−':op==='*'?'×':op==='/'?'÷':''; }
@@ -561,46 +1837,92 @@ class Component extends DCLogic {
   beep(){ if(!this.actx) return; try{ const o=this.actx.createOscillator(); const g=this.actx.createGain(); o.type='sine'; o.frequency.value=880; o.connect(g); g.connect(this.actx.destination); const t=this.actx.currentTime; g.gain.setValueAtTime(0.0001,t); g.gain.exponentialRampToValueAtTime(0.22,t+0.02); g.gain.exponentialRampToValueAtTime(0.0001,t+0.32); o.start(t); o.stop(t+0.34); }catch(e){} }
   stopAlarm(){ if(this.alarmBeep){clearInterval(this.alarmBeep);this.alarmBeep=null;} }
 
+  resolveGetUserMedia(){
+    if(typeof window==='undefined') return null;
+    if(navigator.mediaDevices && typeof navigator.mediaDevices.getUserMedia==='function'){
+      return (c)=>navigator.mediaDevices.getUserMedia(c);
+    }
+    const legacy=navigator.getUserMedia||navigator.webkitGetUserMedia||navigator.mozGetUserMedia;
+    if(legacy) return (c)=>new Promise((res,rej)=>legacy.call(navigator,c,res,rej));
+    return null;
+  }
+  cameraErrorText(err){
+    const insecure=!(window.isSecureContext||location.protocol==='https:'||location.hostname==='localhost'||location.hostname==='127.0.0.1');
+    if(insecure || !this.resolveGetUserMedia()){
+      return 'Камера на iPhone работает только по HTTPS (или localhost). Откройте страницу по защищённой ссылке и нажмите «Включить камеру».';
+    }
+    const name=err&&(err.name||err.message)||'';
+    if(/NotAllowed|Permission|Denied/i.test(name)) return 'Доступ к камере запрещён. В Настройках → Safari → Камера разрешите доступ для этого сайта и нажмите «Повторить».';
+    if(/NotFound|DevicesNotFound/i.test(name)) return 'Фронтальная камера не найдена на устройстве.';
+    return 'Не удалось включить камеру. Нажмите «Повторить» — на iPhone должен появиться системный запрос разрешения.';
+  }
+  enableCamera(){ this.startCamera(); }
   startCamera(){
     this.camAttachTries=0;
-    this.setState({camErr:false,camReady:false});
-    if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia){ this.setState({camErr:true}); return; }
-    const attach=(s)=>{ this.stream=s; this.attachCamera(); };
-    const fail=()=>this.setState({camErr:true,camReady:false});
-    navigator.mediaDevices.getUserMedia({
-      video:{facingMode:{ideal:'user'},width:{ideal:1280},height:{ideal:720}},
-      audio:false
-    }).then(attach).catch(()=>{
-      navigator.mediaDevices.getUserMedia({video:{facingMode:'user'},audio:false})
-        .then(attach)
-        .catch(()=>navigator.mediaDevices.getUserMedia({video:true,audio:false}).then(attach).catch(fail));
-    });
+    if(this.camAttachTimer){ clearTimeout(this.camAttachTimer); this.camAttachTimer=null; }
+    if(this.stream){ try{ this.stream.getTracks().forEach(t=>t.stop()); }catch(e){} this.stream=null; }
+    const gum=this.resolveGetUserMedia();
+    if(!gum){
+      this.setState({camErr:true,camReady:false,camNeedsTap:false,camErrText:this.cameraErrorText()});
+      return;
+    }
+    this.setState({camErr:false,camReady:false,camNeedsTap:false,camErrText:''});
+    const want=this.state.app==='qr'?'environment':'user';
+    // На iOS сначала простые constraints — сложные часто падают без диалога
+    const list=[
+      {video:{facingMode:want},audio:false},
+      {video:{facingMode:{ideal:want}},audio:false},
+      {video:true,audio:false}
+    ];
+    const fail=(err)=>this.setState({camErr:true,camReady:false,camNeedsTap:false,camErrText:this.cameraErrorText(err)});
+    const attempt=(i)=>{
+      if(i>=list.length){ fail(this._lastCamErr); return; }
+      gum(list[i]).then(s=>{
+        this.stream=s;
+        this.attachCamera();
+      }).catch(err=>{
+        this._lastCamErr=err;
+        attempt(i+1);
+      });
+    };
+    attempt(0);
   }
   attachCamera(){
-    if(this.state.app!=='mirror') return;
+    if(!this.needsCamera(this.state.app)) return;
     const v=this.videoRef&&this.videoRef.current;
     if(!v){
-      if(this.camAttachTries++<30){ this.camAttachTimer=setTimeout(()=>this.attachCamera(),50); }
-      else this.setState({camErr:true,camReady:false});
+      if(this.camAttachTries++<40){ this.camAttachTimer=setTimeout(()=>this.attachCamera(),50); }
+      else this.setState({camErr:true,camReady:false,camNeedsTap:true,camErrText:'Не удалось показать видео. Нажмите «Включить камеру» ещё раз.'});
       return;
     }
     this.camAttachTries=0;
     try{
-      v.srcObject=this.stream;
+      v.setAttribute('playsinline','true');
+      v.setAttribute('webkit-playsinline','true');
+      v.setAttribute('muted','true');
+      v.playsInline=true;
       v.muted=true;
-      v.setAttribute('playsinline','');
-      v.setAttribute('webkit-playsinline','');
+      v.defaultMuted=true;
+      if('srcObject' in v) v.srcObject=this.stream;
+      else if(this.stream) v.src=URL.createObjectURL(this.stream);
+      const done=()=>this.setState({camReady:true,camErr:false,camNeedsTap:false,camErrText:''});
       const play=v.play();
-      if(play&&play.then) play.then(()=>this.setState({camReady:true,camErr:false})).catch(()=>this.setState({camReady:true}));
-      else this.setState({camReady:true});
-    }catch(e){ this.setState({camErr:true,camReady:false}); }
+      if(play&&play.then) play.then(done).catch(()=>{
+        // iOS иногда требует повторный play после metadata
+        v.onloadedmetadata=()=>{ v.play().then(done).catch(done); };
+        done();
+      });
+      else done();
+    }catch(e){ this.setState({camErr:true,camReady:false,camNeedsTap:true,camErrText:this.cameraErrorText(e)}); }
   }
   stopCamera(){
     if(this.camAttachTimer){ clearTimeout(this.camAttachTimer); this.camAttachTimer=null; }
     if(this.stream){ this.stream.getTracks().forEach(t=>t.stop()); this.stream=null; }
     const v=this.videoRef&&this.videoRef.current;
-    if(v){ try{ v.srcObject=null; }catch(e){} }
-    this.setState({camReady:false});
+    if(v){ try{ v.srcObject=null; v.removeAttribute('src'); }catch(e){} }
+    if(this.state.camReady||this.state.camErr||this.state.camNeedsTap){
+      this.setState({camReady:false,camErr:false,camNeedsTap:false,camErrText:''});
+    }
   }
 
   startOrientation(){
@@ -624,7 +1946,8 @@ class Component extends DCLogic {
   dirOf(h){ const d=['С','СВ','В','ЮВ','Ю','ЮЗ','З','СЗ']; let i=Math.round(((h%360)/45)); return d[((i%8)+8)%8]; }
 
   makeIcon(id,size,radius){
-    return React.createElement('div',{style:{width:size+'px',height:size+'px',borderRadius:radius+'px',background:this.ICON_BG[id],display:'flex',alignItems:'center',justifyContent:'center',flex:'0 0 auto',color:id==='calendar'?'#FF3B30':'#fff'},dangerouslySetInnerHTML:{__html:this.ICON_SVG[id]}});
+    const fg=(id==='calendar'||id==='firstaid')?'#FF3B30':'#fff';
+    return React.createElement('div',{style:{width:size+'px',height:size+'px',borderRadius:radius+'px',background:this.ICON_BG[id],display:'flex',alignItems:'center',justifyContent:'center',flex:'0 0 auto',color:fg},dangerouslySetInnerHTML:{__html:this.ICON_SVG[id]}});
   }
 
   buildCalendar(){
@@ -655,11 +1978,112 @@ class Component extends DCLogic {
     const flashOn=st.flashlightOn;
     const pay=st.pay;
 
-    const icons={};
-    ['flashlight','calculator','alarm','stopwatch','calendar','compass','contacts','mirror','translator'].forEach(id=>{ icons[id]=this.makeIcon(id,30,7); });
+    const icons={}; this.APP_IDS.forEach(id=>{ icons[id]=this.makeIcon(id,30,7); });
+    const sel={}; this.APP_IDS.forEach(id=>{ sel[id]=()=>this.selectApp(id); });
 
-    const sel={};
-    ['flashlight','calculator','alarm','stopwatch','calendar','compass','contacts','mirror','translator'].forEach(id=>{ sel[id]=()=>this.selectApp(id); });
+    const smokeAlert=!!st.smokeSim && app==='smoke';
+    const faOpen=st.firstaidOpen?this.FIRSTAID.find(x=>x.id===st.firstaidOpen):null;
+    const faItems=this.FIRSTAID.map(item=>{
+      const unlocked=!!item.free||st.firstaidUnlocked.indexOf(item.id)>=0;
+      return {
+        title:item.title,
+        right:unlocked?(item.free?'Бесплатно':'›'):'🔒',
+        rightStyle:{fontSize:unlocked?'15px':'14px',color:unlocked?(item.free?'#30D158':'#8E8E93'):'#8E8E93'},
+        onTap:()=>{
+          if(unlocked) this.setState({firstaidOpen:item.id});
+          else this.open('firstaid',{symptomId:item.id});
+        }
+      };
+    });
+
+    const cs=st.casino;
+    const csType=cs?cs.type:'';
+    const csStage=cs?cs.stage:'';
+    const casinoWin=csStage==='win', casinoLose=csStage==='lose';
+    const csDone=casinoWin||casinoLose;
+    const csIdle=!!cs&&csStage==='ready';
+    const csBusy=!!cs&&!csIdle&&!csDone;
+    const csRevealed=!!cs&&(csStage==='reveal'||csDone);
+    const slotsSpin=csType==='slots'&&csStage==='playing';
+    const shellsShuffle=csType==='shells'&&csStage==='shuffle';
+    const slotSym=casinoWin?'7️⃣':(casinoLose?'🍒':'⭐');
+    const csCups=[0,1,2].map(i=>{
+      const lifted=(csStage==='peek'&&i===0)||(csRevealed&&(i===cs.picked||i===cs.ballAt));
+      const ball=(csStage==='peek'&&i===0)||(csRevealed&&i===cs.ballAt);
+      return {
+        cls:'cs-cup'+(shellsShuffle?' cs-cup--sh'+i:'')+(lifted?' cs-cup--lift':''),
+        ball:ball,
+        onTap:(function(self,idx){return ()=>self.casinoPickShell(idx);})(this,i)
+      };
+    });
+    const csShellHint=csStage==='peek'?'Шарик Premium здесь. Следите внимательно…'
+      :shellsShuffle?'Перемешиваем…'
+      :csStage==='pick'?'Где Premium? Выберите стаканчик'
+      :casinoWin?'Вы нашли Premium!'
+      :casinoLose?'Premium был под другим стаканчиком'
+      :'Шарик Premium спрятан под одним из стаканчиков';
+    const csSectors=this.FORTUNE.map((s,i)=>{
+      const a=i*90+45;
+      return {label:s.label,style:{transform:'translate(-50%,-50%) rotate('+a+'deg) translateY(-64px) rotate('+(-a)+'deg)',color:s.fg}};
+    });
+    const csWheelStyle={
+      transform:'rotate('+((cs&&cs.angle)||0)+'deg)',
+      transition:'transform '+((cs&&cs.spinMs)||0)+'ms cubic-bezier(.12,.62,.12,1)',
+      background:'conic-gradient('+this.FORTUNE.map((s,i)=>s.color+' '+(i*90)+'deg '+((i+1)*90)+'deg').join(',')+')'
+    };
+    const csScratchWin=!!cs&&(cs.forced||'lose')==='win';
+    const pipOn={width:'13px',height:'13px',borderRadius:'50%',background:'#12081f',alignSelf:'center',justifySelf:'center'};
+    const pipOff={width:'13px',height:'13px'};
+    const pipsOf=(n)=>{ const set=this.DICE_PIPS[n]||[]; return [0,1,2,3,4,5,6,7,8].map(i=>({style:set.indexOf(i)>=0?pipOn:pipOff})); };
+    const diceSum=cs?((cs.d1||0)+(cs.d2||0)):0;
+    const csLoseTitles={slots:'Почти!',shells:'Не тот стаканчик!',fortune:'«Почти» — так близко!',scratch:'Пусто!',dice:'Выпало '+diceSum+', а нужно 7'};
+
+    const parkUnlocked=st.parkNav||st.parkFast;
+
+    const pedoCap=this.pedoCap();
+    const PEDO_CIRC=2*Math.PI*92;
+    const pedoDashLen=Math.min(1,st.pedoSteps/1000)*PEDO_CIRC;
+
+    const cookFreezeAt=this.cookFreezeAt();
+    const cookFrozen=!st.cookPaid&&!st.cookRunning&&st.cookLeft>0&&st.cookLeft<st.cookTotal&&st.cookLeft===cookFreezeAt;
+    const cookPresets=this.COOK_PRESETS.map(p=>({
+      label:p.label,
+      style:{padding:'10px 16px',borderRadius:'12px',fontSize:'15px',fontWeight:600,cursor:'pointer',background:st.cookTotal===p.sec?'#0A84FF':'#2C2C2E',color:'#fff'},
+      onTap:(function(self,sec){return ()=>self.cookPreset(sec);})(this,p.sec)
+    }));
+
+    const wxBlocks=this.WX_BLOCKS.map(b=>{
+      const un=st.wxUnlocked.indexOf(b.id)>=0;
+      return {
+        title:b.title, value:b.value, locked:!un,
+        style:{position:'relative',overflow:'hidden',background:'rgba(255,255,255,.1)',border:'.5px solid rgba(255,255,255,.14)',borderRadius:'16px',padding:'14px',minHeight:'98px',display:'flex',flexDirection:'column',gap:'8px',cursor:un?'default':'pointer'},
+        valStyle:un?{fontSize:'19px',fontWeight:600,lineHeight:1.3}:{fontSize:'19px',fontWeight:600,lineHeight:1.3,filter:'blur(6px)',opacity:.55},
+        onTap:un?undefined:(function(self,id){return ()=>self.open('weather',{weatherBlock:id});})(this,b.id)
+      };
+    });
+
+    const curFromDef=this.curDef(st.curFrom), curToDef=this.curDef(st.curTo);
+    const curOptions=this.CURRENCIES.map(c=>{
+      const locked=this.curLocked(c.id);
+      return {
+        flag:c.flag, name:c.name,
+        nameStyle:{flex:1,fontSize:'17px',color:locked?'#8E8E93':'#fff'},
+        right:locked?'🔒':(c.real?'Pro':'Бесплатно'),
+        rightStyle:{flex:'0 0 auto',fontSize:'13px',fontWeight:600,color:locked?'#8E8E93':(c.real?'#FFD60A':'#30D158')},
+        onTap:(function(self,slot,id){return ()=>self.curPick(slot,id);})(this,st.curPicker,c.id)
+      };
+    });
+
+    const voiceList=(st.voiceMemos||[]).map(m=>({
+      title:m.title, meta:m.meta, dur:m.dur,
+      playStyle:{flex:'0 0 auto',width:'40px',height:'40px',borderRadius:'50%',background:st.voicePlaying===m.id?'#30D158':'#2C2C2E',color:'#fff',display:'flex',alignItems:'center',justifyContent:'center',fontSize:'14px',cursor:'pointer'},
+      onPlay:(function(self,id){return ()=>self.voicePlayTap(id);})(this,m.id)
+    }));
+
+    const dndFeed=(st.dndFeed||[]).map((n,i)=>({
+      name:n.name,
+      style:{display:'flex',alignItems:'center',gap:'10px',background:'rgba(28,28,30,.92)',borderRadius:'14px',padding:'10px 12px',animation:'dndIn .3s ease',opacity:1-i*0.18}
+    }));
 
     const press={
       clear:()=>this.calcClear(), sign:()=>this.calcSign(), percent:()=>this.calcPercent(),
@@ -688,11 +2112,17 @@ class Component extends DCLogic {
       offline:st.offline, toggleOffline:()=>this.setState(s=>({offline:!s.offline})),
       offlineTrackStyle:{width:'51px',height:'31px',borderRadius:'16px',background:st.offline?'#0A84FF':'#39393D',position:'relative',flex:'0 0 auto',transition:'background .2s'},
       offlineKnobStyle:{position:'absolute',top:'2px',left:st.offline?'22px':'2px',width:'27px',height:'27px',borderRadius:'50%',background:'#fff',transition:'left .2s',boxShadow:'0 1px 3px rgba(0,0,0,.3)'},
+      toggleSmokeSim:()=>this.setState(s=>({smokeSim:!s.smokeSim})),
+      smokeTrackStyle:{width:'51px',height:'31px',borderRadius:'16px',background:st.smokeSim?'#FF3B30':'#39393D',position:'relative',flex:'0 0 auto',transition:'background .2s'},
+      smokeKnobStyle:{position:'absolute',top:'2px',left:st.smokeSim?'22px':'2px',width:'27px',height:'27px',borderRadius:'50%',background:'#fff',transition:'left .2s',boxShadow:'0 1px 3px rgba(0,0,0,.3)'},
       icons, sel,
 
       isFlashlight:app==='flashlight', isCalculator:app==='calculator', isAlarm:app==='alarm',
       isStopwatch:app==='stopwatch', isCalendar:app==='calendar', isCompass:app==='compass',
       isContacts:app==='contacts', isMirror:app==='mirror', isTranslator:app==='translator',
+      isSos:app==='sos', isFindphone:app==='findphone', isSmoke:app==='smoke', isFirstaid:app==='firstaid', isParking:app==='parking',
+      isPedometer:app==='pedometer', isCooktimer:app==='cooktimer', isWeather:app==='weather', isQr:app==='qr',
+      isBatteryapp:app==='batteryapp', isDnd:app==='dnd', isDocs:app==='docs', isVoice:app==='voice', isCurrency:app==='currency',
 
       flashScreenStyle:{position:'absolute',inset:0,background:flashOn?'#fff':'#000',color:flashOn?'#555':'#8E8E93'},
       flashButtonStyle:{width:'200px',height:'200px',borderRadius:'50%',border:'2px solid '+(flashOn?'#000':'#fff'),color:flashOn?'#000':'#fff',display:'flex',alignItems:'center',justifyContent:'center',cursor:'pointer',background:flashOn?'transparent':'rgba(255,255,255,0.04)'},
@@ -721,12 +2151,113 @@ class Component extends DCLogic {
       toggleContactsBanner:()=>this.setState(s=>({contactsExpanded:!s.contactsExpanded})),
       contactsDisableAd:()=>this.open('contacts'), contactsList,
 
-      videoRef:this.videoRef, camErr:st.camErr, camLoading:!st.camErr&&!st.camReady&&app==='mirror',
+      videoRef:this.videoRef,
+      camErr:st.camErr, camNeedsTap:!!st.camNeedsTap&&!st.camReady, camErrText:st.camErrText||'Нет доступа к камере.',
+      camLoading:!st.camErr&&!st.camReady&&!st.camNeedsTap&&app==='mirror',
+      enableCamera:()=>this.enableCamera(),
       mirrorWatermark:!st.watermarkRemoved, mirrorTired:st.watermarkRemoved,
-      mirrorVideoStyle:{position:'absolute',inset:0,width:'100%',height:'100%',objectFit:'cover',transform:'scaleX(-1)',background:'#000',opacity:st.camReady?1:0,transition:'opacity .25s ease',filter:st.watermarkRemoved?'sepia(0.45) saturate(1.5) contrast(1.03) brightness(1.05)':'none'},
+      mirrorVideoStyle:{position:'absolute',inset:0,width:'100%',height:'100%',objectFit:'cover',transform:'scaleX(-1)',background:'#000',opacity:st.camReady?1:0,transition:'opacity .25s ease',filter:st.watermarkRemoved?'sepia(0.45) saturate(1.5) contrast(1.03) brightness(1.05)':'none',zIndex:1},
       mirrorRemove:()=>this.open('mirror'),
 
       trInput:st.trInput, setTrInput:(e)=>this.setState({trInput:e.target.value}), translate:()=>this.translate(), trTokens,
+
+      sosIdle:st.sosStage==='idle', sosConnecting:st.sosStage==='connecting', sosQueued:st.sosStage==='queued', sosSkipped:st.sosStage==='skipped',
+      sosCall:()=>this.open('sos'), sosSkipQueue:()=>this.openWheel('sosSkip'),
+
+      findFound:st.findFound, findBeep:()=>this.findPhoneBeep(), findLocate:()=>this.open('findphone'),
+
+      smokeAlert, smokeIdle:!smokeAlert,
+      smokeScreenStyle:{position:'absolute',inset:0,background:smokeAlert?'#FF3B30':'#000',animation:smokeAlert?'smokeFlash .45s steps(1) infinite':'none'},
+      smokeLocate:()=>this.open('smoke'), smokeLocated:st.smokeLocated, smokeFreeHint:!st.smokeLocated,
+
+      faList:!faOpen, faDetail:!!faOpen, faTitle:faOpen?faOpen.title:'', faItems, faBack:()=>this.setState({firstaidOpen:null}),
+
+      parkSaved:st.parkSaved,
+      parkHint:parkUnlocked?(st.parkSaved?'Ваша машина, 40 м':'Ваша машина где-то рядом'):'Офис разработчика, 1200 км',
+      parkArrowStyle:{transform:parkUnlocked?(st.parkSaved?'rotate(28deg)':'rotate(-10deg)'):'rotate(148deg)'},
+      parkRemember:()=>this.parkRemember(), parkNavigate:()=>this.open('parking'), parkFaster:()=>this.openWheel('parkFast'),
+
+      casinoActive:!!cs, casinoTitle:cs?(this.CASINO_TITLES[csType]||''):'',
+      casinoWin, casinoLose, casinoLoseTitle:csLoseTitles[csType]||'Почти!',
+      csIdle, csBusy,
+      csSlots:csType==='slots', csShells:csType==='shells', csFortune:csType==='fortune',
+      csScratch:csType==='scratch', csDice:csType==='dice',
+      csSlotsSpin:slotsSpin, csSlotsStill:!slotsSpin,
+      reelClass:'wheel-reel'+(slotsSpin?' wheel-reel--spin':''),
+      reelA:cs&&cs.r1?cs.r1:slotSym, reelB:cs&&cs.r2?cs.r2:slotSym, reelC:cs&&cs.r3?cs.r3:slotSym,
+      csCups, csShellHint,
+      csShellsBusy:csType==='shells'&&csBusy,
+      csShellsBtn:csStage==='pick'?'ВЫБЕРИТЕ СТАКАНЧИК':'СЛЕДИТЕ ЗА ШАРИКОМ…',
+      csSectors, csWheelStyle,
+      scratchRef:this.scratchRef,
+      csScratchText:csScratchWin?'Разблокировано!':'Пусто, попробуйте ещё',
+      csScratchTextStyle:{color:csScratchWin?'#ffe56a':'#c9b8e0'},
+      csScratchHint:csDone?(csScratchWin?'Слой стёрт — приз ваш':'Слой стёрт. Ничего.'):'Проведите пальцем по серому слою',
+      csScratchSkip:csType==='scratch'&&!csDone,
+      scratchDown:(e)=>this.scratchDown(e), scratchMove:(e)=>this.scratchMove(e), scratchUp:()=>this.scratchUp(),
+      csDie1:pipsOf(cs?cs.d1:1), csDie2:pipsOf(cs?cs.d2:1),
+      csDieClass:'cs-die'+(csType==='dice'&&csStage==='playing'?' cs-die--roll':''),
+      csDiceText:csIdle?'Нужно ровно 7':(csStage==='playing'?'Бросаем…':'Выпало: '+(cs?cs.d1:0)+' + '+(cs?cs.d2:0)+' = '+diceSum),
+      casinoPlay:()=>this.casinoPlay(), casinoRetry:()=>this.casinoRetry(), closeCasino:()=>this.closeCasino(),
+      casinoForceLose:()=>this.casinoForce('lose'), casinoForceWin:()=>this.casinoForce('win'),
+
+      pedoSteps:st.pedoSteps, pedoDash:pedoDashLen.toFixed(1)+' '+PEDO_CIRC.toFixed(1),
+      pedoRingStyle:{transition:'stroke-dasharray .35s ease'},
+      pedoStuck:st.pedoSteps>=pedoCap,
+      pedoStep:()=>this.pedoStep(), pedoNeedPay:!st.pedoBonus, pedoBonusDone:st.pedoBonus,
+      pedoUnlockTap:()=>this.open('pedometer'),
+
+      cookText:this.fmtMMSS(st.cookLeft),
+      cookSub:st.cookDone?'Блюдо готово':(st.cookRunning?(st.cookFast?'Доготавливаем…':'Осталось'):(cookFrozen?'Пауза: нужна Pro-версия':'Готов к запуску')),
+      cookWaiting:cookFrozen, cookDone:st.cookDone, cookRunning:st.cookRunning,
+      cookCanStart:!st.cookRunning&&!st.cookDone&&st.cookLeft>0,
+      cookPresets,
+      cookStart:()=>this.cookStart(), cookPause:()=>this.cookPause(), cookReset:()=>this.cookReset(),
+
+      wxTemp:'19°', wxBlocks,
+
+      qrVideoStyle:{position:'absolute',inset:0,width:'100%',height:'100%',objectFit:'cover',background:'#000',opacity:st.camReady?1:0,transition:'opacity .25s ease'},
+      qrLoading:!st.camErr&&!st.camReady&&!st.camNeedsTap&&app==='qr', qrCamErr:st.camErr&&app==='qr',
+      qrResult:st.qrUnlocked?'https://купи-подписку.рф':'Ссылка на... 🔒',
+      qrResultStyle:{marginTop:'6px',fontSize:'19px',fontWeight:600,wordBreak:'break-all',color:st.qrUnlocked?'#0A84FF':'#fff'},
+      qrLocked:!st.qrUnlocked, qrOpened:st.qrUnlocked,
+      qrReveal:()=>this.open('qr'), qrAgain:()=>this.setState({qrUnlocked:false}),
+
+      battText:st.battPct+'%',
+      battPctStyle:{marginTop:'12px',fontSize:'92px',fontWeight:200,letterSpacing:'-5px',lineHeight:1,color:st.battFrozen?'#30D158':(st.battPct<=20?'#FF453A':'#fff'),animation:st.battTurbo?'battBlink .7s ease-in-out infinite':'none'},
+      battFillStyle:{width:Math.max(3,st.battPct)+'%',height:'100%',borderRadius:'9px',background:st.battPct<=20?'#FF453A':'#30D158',transition:'width .3s ease'},
+      battRateText:st.battFrozen?'Расход: 0% в час · заряд заморожен':(st.battTurbo?'Расход: −90% в час · ускоренный режим':'Расход: −40% в час'),
+      battSaved:st.battFrozen, battFrozen:st.battFrozen, battCanSave:!st.battFrozen,
+      battSaveTap:()=>this.battSaveTap(),
+
+      dndScreenStyle:{position:'absolute',inset:0,background:st.dndOn?'linear-gradient(180deg,#2a1440 0%,#0d0618 60%,#000 100%)':'#000'},
+      dndOn:st.dndOn, dndOff:!st.dndOn, dndMissed:st.dndMissed, dndFeed,
+      dndOrbStyle:{width:'172px',height:'172px',borderRadius:'50%',display:'flex',alignItems:'center',justifyContent:'center',cursor:'pointer',background:st.dndOn?'radial-gradient(circle at 34% 28%,#d09cff,#7b2cbf 55%,#3c096c)':'#1C1C1E',boxShadow:st.dndOn?'0 0 46px rgba(175,82,222,.55)':'none',border:st.dndOn?'none':'2px solid #2C2C2E'},
+      dndTitle:st.dndOn?'Тишина включена':'Тишина выключена',
+      dndSub:st.dndOn?'Вы недоступны для всех':'Вызовы и уведомления снова доходят',
+      dndToggle:()=>this.dndToggle(),
+
+      docFrameStyle:{position:'relative',overflow:'hidden',marginTop:'16px',height:'352px',flex:'0 0 auto',borderRadius:'18px',background:'#141416',border:'.5px solid rgba(255,255,255,.1)',display:'flex',alignItems:'center',justifyContent:'center'},
+      docEmpty:!st.docScanned, docScanned:st.docScanned, docFlash:st.docFlash,
+      docSaved:st.docSaved, docLost:st.docLost, docDamaged:st.docDamaged,
+      docCanScan:!st.docScanned, docCanSave:st.docScanned&&!st.docSaved,
+      docScan:()=>this.docScan(), docSaveTap:()=>this.docSaveTap(),
+
+      voiceList, voiceEmpty:(st.voiceMemos||[]).length===0,
+      voiceRecording:st.voiceRecording, voiceRecText:this.fmtMMSS(st.voiceRecMs/1000),
+      voiceFail:st.voiceFail, voicePlayingNow:!!st.voicePlaying,
+      voiceRecBtnStyle:{width:'72px',height:'72px',borderRadius:'50%',border:'3px solid rgba(255,255,255,.28)',display:'flex',alignItems:'center',justifyContent:'center',cursor:'pointer',animation:st.voiceRecording?'recPulse 1s ease-in-out infinite':'none'},
+      voiceRecInnerStyle:st.voiceRecording?{width:'26px',height:'26px',borderRadius:'5px',background:'#FF453A'}:{width:'56px',height:'56px',borderRadius:'50%',background:'#FF453A'},
+      voiceToggleRec:()=>this.voiceToggleRec(),
+
+      curAmount:st.curAmount, setCurAmount:(e)=>this.setState({curAmount:e.target.value}),
+      curFromLabel:curFromDef.short, curToLabel:curToDef.short,
+      curPillStyle:{flex:'0 0 auto',background:'#2C2C2E',borderRadius:'12px',padding:'9px 12px',fontSize:'15px',fontWeight:600,cursor:'pointer',whiteSpace:'nowrap'},
+      curResult:this.curConvert(),
+      curRateText:'1 '+curFromDef.short+' = '+this.curFmt(curFromDef.rate/curToDef.rate)+' '+curToDef.short,
+      curOpenFrom:()=>this.setState({curPicker:'from'}), curOpenTo:()=>this.setState({curPicker:'to'}),
+      curPickerOpen:!!st.curPicker, curPickerClose:()=>this.setState({curPicker:null}),
+      curSwap:()=>this.curSwap(), curOptions,
 
       payActive:!!pay,
       stPaywall:!!pay&&pay.stage==='paywall', stApple:!!pay&&pay.stage==='applepay',
@@ -734,7 +2265,7 @@ class Component extends DCLogic {
       payTitle:pay?pay.title:'', paySubtitle:pay?pay.subtitle:'',
       payPriceText: pay ? (pay.priceSource==='alarm' ? '$'+st.alarmPrice.toFixed(2) : pay.price) : '',
       payIcon: pay ? this.makeIcon(pay.appId,64,15) : null,
-      payContinue:()=>this.payContinue(), cancelPay:()=>this.cancelPay()
+      payContinue:()=>this.payContinue(), payTryLuck:()=>this.payTryLuck(), cancelPay:()=>this.cancelPay()
     };
   }
 }
