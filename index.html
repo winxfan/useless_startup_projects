@@ -378,7 +378,7 @@ a,a:hover{color:#0A84FF;}
       </div>
       <div style="font-size:22px;font-weight:700;text-align:center;">Спасибо! Ваша заявка принята.</div>
       <div style="font-size:16px;color:#8E8E93;margin-top:12px;text-align:center;line-height:1.45;">Перед вами в очереди: 400 человек.<br/>Ожидание ~6 часов</div>
-      <button onClick="{{ sosSkipQueue }}" style="margin-top:36px;width:100%;padding:16px;border:none;border-radius:14px;background:#FF3B30;color:#fff;font-size:17px;font-weight:600;">Пропустить очередь за $0.99</button>
+      <button onClick="{{ sosSkipQueue }}" style="margin-top:36px;width:100%;padding:16px;border:none;border-radius:14px;background:#FF3B30;color:#fff;font-size:17px;font-weight:600;">Пропустить очередь за 1999 ₽</button>
     </sc-if>
     <sc-if value="{{ sosSkipped }}">
       <div style="font-size:42px;margin-bottom:12px;">🎟️</div>
@@ -755,7 +755,7 @@ a,a:hover{color:#0A84FF;}
         <div style="font-size:14px;color:#FF453A;font-weight:600;font-variant-numeric:tabular-nums;">Запись… {{ voiceRecText }}</div>
       </sc-if>
       <div onClick="{{ voiceToggleRec }}" style="{{ voiceRecBtnStyle }}"><div style="{{ voiceRecInnerStyle }}"></div></div>
-      <div style="font-size:12px;color:#636366;">Запись бесплатна. Прослушивание — $0.99 за раз</div>
+      <div style="font-size:12px;color:#636366;">Запись бесплатна. Прослушивание — 399 ₽ за раз</div>
     </div>
   </div>
   </sc-if>
@@ -781,7 +781,7 @@ a,a:hover{color:#0A84FF;}
       </div>
     </div>
     <div style="margin-top:18px;text-align:center;font-size:15px;color:#fff;font-weight:600;">{{ curRateText }}</div>
-    <div style="margin-top:6px;text-align:center;font-size:13px;color:#8E8E93;">Курс дня: 1 USD = 47 Скибиди-долларов</div>
+    <div style="margin-top:6px;text-align:center;font-size:13px;color:#8E8E93;">Курс дня: 1 ₽ = 94 Скибиди-долларов</div>
     <div style="margin-top:14px;text-align:center;font-size:12px;color:#636366;line-height:1.5;">Кринжи, Вайбаксы, Ноускоины и Скибиди-доллары<br/>бесплатны. Реальные валюты — в Pro.</div>
     <sc-if value="{{ curPickerOpen }}">
     <div style="position:absolute;inset:0;z-index:90;">
@@ -925,7 +925,7 @@ a,a:hover{color:#0A84FF;}
 
       <sc-if value="{{ casinoLose }}">
         <div style="position:relative;z-index:1;font-size:20px;font-weight:700;color:#fff;margin:16px 0 8px;">{{ casinoLoseTitle }}</div>
-        <div style="position:relative;z-index:1;font-size:15px;color:#c9b8e0;margin-bottom:16px;">Ещё одна попытка — $0.99</div>
+        <div style="position:relative;z-index:1;font-size:15px;color:#c9b8e0;margin-bottom:16px;">Ещё одна попытка — 399 ₽</div>
         <button onClick="{{ casinoRetry }}" class="wheel-spin-btn">Попробовать снова</button>
         <button onClick="{{ closeCasino }}" style="position:relative;z-index:1;width:100%;margin-top:14px;padding:2px;border:none;background:transparent;color:#8E8E93;font-size:14px;">Не сейчас</button>
       </sc-if>
@@ -959,7 +959,7 @@ a,a:hover{color:#0A84FF;}
       <div style="font-size:36px;font-weight:700;margin:22px 0 4px;">{{ payPriceText }}</div>
       <div style="font-size:12px;color:#8E8E93;margin-bottom:22px;">Разовая покупка</div>
       <button onClick="{{ payContinue }}" style="width:100%;padding:16px;border:none;border-radius:14px;background:#0A84FF;color:#fff;font-size:18px;font-weight:600;">Продолжить</button>
-      <button onClick="{{ payTryLuck }}" style="width:100%;margin-top:12px;padding:15px;border:none;border-radius:14px;background:linear-gradient(90deg,#AF52DE,#FF2D55);color:#fff;font-size:16px;font-weight:700;">Испытать удачу за $0.99</button>
+      <button onClick="{{ payTryLuck }}" style="width:100%;margin-top:12px;padding:15px;border:none;border-radius:14px;background:linear-gradient(90deg,#AF52DE,#FF2D55);color:#fff;font-size:16px;font-weight:700;">Испытать удачу за 399 ₽</button>
     </div>
     </sc-if>
 
@@ -1113,32 +1113,32 @@ class Component extends DCLogic {
     {id:'RUB',name:'Рубль',short:'RUB',flag:'🇷🇺',rate:0.6,real:true}
   ];
   PAYCFG = {
-    flashOn:{appId:'flashlight',title:'Включите свет',subtitle:'Осветите любую ситуацию мощным лучом.',price:'$2.99'},
-    flashOff:{appId:'flashlight',title:'Выключите свет',subtitle:'Верните темноту одним касанием.',price:'$4.99'},
-    calc:{appId:'calculator',title:'Узнайте ответ',subtitle:'Разблокируйте результат вычисления.',price:'$1.99'},
+    flashOn:{appId:'flashlight',title:'Включите свет',subtitle:'Осветите любую ситуацию мощным лучом.',price:'599 ₽'},
+    flashOff:{appId:'flashlight',title:'Выключите свет',subtitle:'Верните темноту одним касанием.',price:'999 ₽'},
+    calc:{appId:'calculator',title:'Узнайте ответ',subtitle:'Разблокируйте результат вычисления.',price:'399 ₽'},
     alarm:{appId:'alarm',title:'Отключите будильник',subtitle:'Верните тишину. Цена растёт, пока звенит.',priceSource:'alarm'},
-    stopwatch:{appId:'stopwatch',title:'Остановите время',subtitle:'Зафиксируйте результат замера.',price:'$0.99'},
-    calendar:{appId:'calendar',title:'Выходные — в Premium',subtitle:'Откройте субботу и воскресенье.',price:'$3.99'},
-    compass:{appId:'compass',title:'Найдите свой путь',subtitle:'Навигация, которая работает всегда.',price:'$5.99'},
-    contacts:{appId:'contacts',title:'Отключить рекламу',subtitle:'Больше никаких SMS вашим контактам.',price:'$6.99'},
-    mirror:{appId:'mirror',title:'Уберите водяной знак',subtitle:'Чистое отражение без логотипа.',price:'$4.99'},
-    translator:{appId:'translator',title:'Откройте нечётные слова',subtitle:'Разблокируйте скрытое слово перевода.',price:'$0.99'},
-    sos:{appId:'sos',title:'Разблокируйте экстренный режим',subtitle:'Помощь всегда рядом — после оплаты.',price:'$3.99'},
-    sosSkip:{appId:'sos',title:'Пропустить очередь',subtitle:'Станьте почти первым в очереди спасения.',price:'$4.99'},
-    findphone:{appId:'findphone',title:'Разблокируйте поиск',subtitle:'Чтобы найти потерянный телефон, войдите с потерянного телефона и оплатите подписку.',price:'$2.99'},
-    smoke:{appId:'smoke',title:'Premium: определение локации дыма',subtitle:'Узнайте, где именно дымит — с точностью до конфорки.',price:'$2.99'},
-    firstaid:{appId:'firstaid',title:'Разблокируйте инструкцию',subtitle:'Получите премиум-совет первой помощи.',price:'$1.99'},
-    parking:{appId:'parking',title:'Разблокируйте навигацию',subtitle:'Проложим маршрут к вашей машине.',price:'$2.99'},
-    parkFast:{appId:'parking',title:'Найти быстрее',subtitle:'Ускорьте путь к парковке через колесо удачи.',price:'$0.99',casino:'slots'},
-    pedometer:{appId:'pedometer',title:'Засчитать пропущенные шаги',subtitle:'Каждый 10-й шаг доступен только в Pro.',price:'$1.99',casino:'slots'},
-    cooktimer:{appId:'cooktimer',title:'Доготовить блюдо',subtitle:'Последняя минута таймера — премиум-функция.',price:'$2.99',casino:'fortune'},
-    weather:{appId:'weather',title:'Откройте прогноз',subtitle:'Осадки, ветер и влажность — только в Pro.',price:'$1.99',casino:'shells'},
-    qr:{appId:'qr',title:'Показать содержимое',subtitle:'Код уже отсканирован. Осталось оплатить чтение.',price:'$0.99',casino:'scratch'},
-    batteryapp:{appId:'batteryapp',title:'Энергосбережение',subtitle:'Экономьте заряд, пока мы считаем экономию.',price:'$2.99',casino:'dice'},
-    dnd:{appId:'dnd',title:'Выключить тишину',subtitle:'Включать режим бесплатно. Выключать — премиум.',price:'$3.99',casino:'fortune'},
-    docs:{appId:'docs',title:'Сохранить скан',subtitle:'Просмотр бесплатно, сохранение и отправка — в Pro.',price:'$2.99',casino:'slots'},
-    voice:{appId:'voice',title:'Прослушать запись',subtitle:'Одно прослушивание. Ваш голос — премиум-контент.',price:'$0.99',casino:'shells'},
-    currency:{appId:'currency',title:'Открыть реальную валюту',subtitle:'Кринжи и вайбаксы бесплатны всегда.',price:'$1.99',casino:'fortune'}
+    stopwatch:{appId:'stopwatch',title:'Остановите время',subtitle:'Зафиксируйте результат замера.',price:'199 ₽'},
+    calendar:{appId:'calendar',title:'Выходные — в Premium',subtitle:'Откройте субботу и воскресенье.',price:'799 ₽'},
+    compass:{appId:'compass',title:'Найдите свой путь',subtitle:'Навигация, которая работает всегда.',price:'1199 ₽'},
+    contacts:{appId:'contacts',title:'Отключить рекламу',subtitle:'Больше никаких SMS вашим контактам.',price:'1399 ₽'},
+    mirror:{appId:'mirror',title:'Уберите водяной знак',subtitle:'Чистое отражение без логотипа.',price:'999 ₽'},
+    translator:{appId:'translator',title:'Откройте нечётные слова',subtitle:'Разблокируйте скрытое слово перевода.',price:'199 ₽'},
+    sos:{appId:'sos',title:'Разблокируйте экстренный режим',subtitle:'Помощь всегда рядом — после оплаты.',price:'799 ₽'},
+    sosSkip:{appId:'sos',title:'Пропустить очередь',subtitle:'Станьте почти первым в очереди спасения.',price:'999 ₽'},
+    findphone:{appId:'findphone',title:'Разблокируйте поиск',subtitle:'Чтобы найти потерянный телефон, войдите с потерянного телефона и оплатите подписку.',price:'599 ₽'},
+    smoke:{appId:'smoke',title:'Premium: определение локации дыма',subtitle:'Узнайте, где именно дымит — с точностью до конфорки.',price:'599 ₽'},
+    firstaid:{appId:'firstaid',title:'Разблокируйте инструкцию',subtitle:'Получите премиум-совет первой помощи.',price:'399 ₽'},
+    parking:{appId:'parking',title:'Разблокируйте навигацию',subtitle:'Проложим маршрут к вашей машине.',price:'599 ₽'},
+    parkFast:{appId:'parking',title:'Найти быстрее',subtitle:'Ускорьте путь к парковке через колесо удачи.',price:'199 ₽',casino:'slots'},
+    pedometer:{appId:'pedometer',title:'Засчитать пропущенные шаги',subtitle:'Каждый 10-й шаг доступен только в Pro.',price:'399 ₽',casino:'slots'},
+    cooktimer:{appId:'cooktimer',title:'Доготовить блюдо',subtitle:'Последняя минута таймера — премиум-функция.',price:'599 ₽',casino:'fortune'},
+    weather:{appId:'weather',title:'Откройте прогноз',subtitle:'Осадки, ветер и влажность — только в Pro.',price:'399 ₽',casino:'shells'},
+    qr:{appId:'qr',title:'Показать содержимое',subtitle:'Код уже отсканирован. Осталось оплатить чтение.',price:'199 ₽',casino:'scratch'},
+    batteryapp:{appId:'batteryapp',title:'Энергосбережение',subtitle:'Экономьте заряд, пока мы считаем экономию.',price:'599 ₽',casino:'dice'},
+    dnd:{appId:'dnd',title:'Выключить тишину',subtitle:'Включать режим бесплатно. Выключать — премиум.',price:'799 ₽',casino:'fortune'},
+    docs:{appId:'docs',title:'Сохранить скан',subtitle:'Просмотр бесплатно, сохранение и отправка — в Pro.',price:'599 ₽',casino:'slots'},
+    voice:{appId:'voice',title:'Прослушать запись',subtitle:'Одно прослушивание. Ваш голос — премиум-контент.',price:'199 ₽',casino:'shells'},
+    currency:{appId:'currency',title:'Открыть реальную валюту',subtitle:'Кринжи и вайбаксы бесплатны всегда.',price:'399 ₽',casino:'fortune'}
   };
   DICT = {
     'я':'I','хочу':'want','заказать':'to book','столик':'a table','на':'for','двоих':'two',
@@ -1181,7 +1181,7 @@ class Component extends DCLogic {
     menuOpen:false, offline:false,
     flashlightOn:false,
     calc:{display:'0',prev:null,op:null,overwrite:true},
-    alarmOff:false, alarmPrice:0.99, alarmTime:'7:00',
+    alarmOff:false, alarmPrice:399, alarmTime:'7:00',
     swMs:0, swRunning:false, stopwatchPaidAt:null,
     saturdayUnlocked:false,
     adBlocked:false, contactsExpanded:false,
@@ -1211,7 +1211,7 @@ class Component extends DCLogic {
     this.setState({alarmTime:d.getHours()+':'+String(d.getMinutes()).padStart(2,'0')});
     this.alarmPriceTimer=setInterval(()=>{
       if(this.state.app==='alarm' && !this.state.alarmOff){
-        this.setState(s=>({alarmPrice:Math.round((s.alarmPrice+0.1)*100)/100}));
+        this.setState(s=>({alarmPrice:s.alarmPrice+40}));
       }
     },5000);
     if(this.state.app==='alarm') this.startAlarm();
@@ -1353,7 +1353,7 @@ class Component extends DCLogic {
     this.setState({
       flashlightOn:false,
       calc:{display:'0',prev:null,op:null,overwrite:true},
-      alarmOff:false, alarmPrice:0.99,
+      alarmOff:false, alarmPrice:399,
       swMs:0, swRunning:false, stopwatchPaidAt:null,
       saturdayUnlocked:false,
       adBlocked:false, contactsExpanded:false,
@@ -1396,7 +1396,7 @@ class Component extends DCLogic {
     const type=this.randomCasinoType();
     this.setState(s=>({
       pay:Object.assign({},s.pay,{
-        price:'$0.99',
+        price:'399 ₽',
         priceSource:null,
         casino:type,
         viaLuck:true,
@@ -1698,7 +1698,7 @@ class Component extends DCLogic {
   casinoRetry(){
     const c=this.state.casino; if(!c) return;
     const key=c.onKey, type=c.type;
-    const extra={price:'$0.99',title:'Ещё одна попытка',subtitle:'Почти! Оплатите попытку и играйте снова.',casino:type};
+    const extra={price:'399 ₽',title:'Ещё одна попытка',subtitle:'Почти! Оплатите попытку и играйте снова.',casino:type};
     ['symptomId','wordIndex','weatherBlock','curId','curSlot','memoId'].forEach(k=>{ if(c[k]!==undefined && c[k]!==null) extra[k]=c[k]; });
     this.clearCasinoTimers();
     this.setState({casino:null},()=>this.open(key,extra));
@@ -2343,7 +2343,7 @@ class Component extends DCLogic {
       stPaywall:!!pay&&pay.stage==='paywall', stApple:!!pay&&pay.stage==='applepay',
       stProcessing:!!pay&&pay.stage==='processing', stDone:!!pay&&pay.stage==='done', stOffline:!!pay&&pay.stage==='offline',
       payTitle:pay?pay.title:'', paySubtitle:pay?pay.subtitle:'',
-      payPriceText: pay ? (pay.priceSource==='alarm' ? '$'+st.alarmPrice.toFixed(2) : pay.price) : '',
+      payPriceText: pay ? (pay.priceSource==='alarm' ? st.alarmPrice+' ₽' : pay.price) : '',
       payIcon: pay ? this.makeIcon(pay.appId,64,15) : null,
       payContinue:()=>this.payContinue(), payTryLuck:()=>this.payTryLuck(), cancelPay:()=>this.cancelPay()
     };
